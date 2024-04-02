@@ -31,6 +31,6 @@ const PaintedButton = styled.TouchableHighlight<PaintedButtonProps>`
 	margin-left: ${({ ml }) => {
 		return ml || 0;
 	}}px;
-	elevation: 25px;
+	elevation: 25;
 `;
 export default PaintedButton;
