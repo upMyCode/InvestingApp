@@ -1,0 +1,29 @@
+{
+	"extends": "@tsconfig/react-native/tsconfig.json",
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@assets/*": ["src/assets/*"],
+			"@components/*": ["src/components/*"],
+			"@layout/*": ["src/components/layout/*"],
+			"@config/*": ["src/config/*"],
+			"@screens/*": ["src/screens/*"],
+			"@navigation/*": ["src/navigation/*"],
+			"@hooks/*": ["src/hooks/*"],
+			"@forms/*": ["src/forms/*"],
+			"@ui/*": ["src/ui/*"],
+			"@theme/*": ["src/theme/*"],
+			"@api/*": ["src/api/*"],
+			"@constants/*": ["src/constants/*"],
+			"@locales/*": ["src/locales/*"],
+			"@providers/*": ["src/providers/*"],
+			"@types/*": ["src/types/*"],
+			"@helpers/*": ["src/helpers/*"]
+		},
+		"skipLibCheck": true,
+		"resolveJsonModule": true
+	},
+	"include": ["./src", "App.tsx", "./e2e"],
+	"exclude": ["src/node_modules", "node_modules", "/node_modules", "./src/node_modules"],
+	"types": ["react-native-svg-transformer", "@types/react-native"]
+}

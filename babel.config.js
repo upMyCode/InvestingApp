@@ -1,0 +1,60 @@
+module.exports = {
+	presets: ['module:metro-react-native-babel-preset'],
+	plugins: [
+		[
+			'module:react-native-dotenv',
+			{
+				envName: 'APP_ENV',
+				moduleName: '@env',
+				path: '.env',
+				safe: false,
+				allowUndefined: true,
+				verbose: false,
+			},
+		],
+		[
+			'module-resolver',
+			{
+				root: ['./'],
+				extensions: [
+					'.ios.js',
+					'.android.js',
+					'.ios.jsx',
+					'.android.jsx',
+					'.js',
+					'.jsx',
+					'.json',
+					'.ts',
+					'.tsx',
+					'stories.tsx',
+					'.stories.tsx',
+				],
+				alias: {
+					'@assets': './src/assets',
+					'@components': './src/components',
+					'@layout': './src/components/layout',
+					'@screens': './src/screens',
+					'@navigation': './src/navigation',
+					'@hooks': './src/hooks',
+					'@forms': './src/forms',
+					'@ui': './src/ui',
+					'@theme': './src/theme',
+					'@api': './src/api',
+					'@constants': './src/constants',
+					'@locales': './src/locales',
+					'@providers': './src/providers',
+					'@config': './src/config',
+					'@types': './src/types',
+					'@helpers': './src/helpers',
+				},
+			},
+		],
+		[
+			'react-native-reanimated/plugin',
+			{
+				relativeSourceLocation: true,
+				globals: ['__scanCodes'],
+			},
+		],
+	],
+};

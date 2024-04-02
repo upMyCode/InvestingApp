@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">SolRM</string>
+    <string moduleConfig="true" name="CodePushDeploymentKey">eLo2QoLIS2XXNDeC9I6Dx2ZT94jPJJcZlExzl</string>
+</resources>
