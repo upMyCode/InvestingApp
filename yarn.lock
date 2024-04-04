@@ -1774,12 +1774,24 @@
   integrity sha512-sppTBobjvIlPYXyDAyb5WJoBaQq1hprnHj1PWICsA10mVnlmwX5ZVkgO2vGjsfFtb+fmWK9XtZF+aQ6ijqQcwg==
 
 "@react-native-firebase/app@^18.1.0":
-  version "18.8.0"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-18.8.0.tgz#54864f4c54fa0b938ddece67598dc401aecd1e9a"
-  integrity sha512-bVwjop3zLKV1G+ZxyxrdSXVutdSHSM9mngk3qG9W1swmAdeTjvWWIFpyJBf6KlkbKzWbDmLeK7Q+Yc+HLJlg7A==
+  version "18.9.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-18.9.0.tgz#e3c26156ac4f1d12ad5b2c9ce5caf7745204be65"
+  integrity sha512-kMY4HVWxfz0YjQ5n9oyW9uifI5CkQfLfj2FEeQrI9mCwaCNuRw04x9Yc8LeFpew7NPEDVfty7tlL3WEjDpvNEw==
   dependencies:
     opencollective-postinstall "^2.0.3"
     superstruct "^0.6.2"
+
+"@react-native-firebase/auth@^19.1.2":
+  version "19.1.2"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/auth/-/auth-19.1.2.tgz#df9ccc50192f70a8705591e8439154cd7f23c66e"
+  integrity sha512-rZJLGBDimw+JT+RwRyqm/HtotJ19qoeyw/qTClnHeh8cRzvq6PAB4f+y52V/kFqzuZtly/xRNmKBdAIAq94/5Q==
+  dependencies:
+    plist "^3.1.0"
+
+"@react-native-firebase/database@^19.1.2":
+  version "19.1.2"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/database/-/database-19.1.2.tgz#96741967f0447d21369ffb3263fc8c88f868325e"
+  integrity sha512-PlI54lERcTU+6ewLuGoKVcEh8tr3qhfSvd2NaCPDlU1OaqMC6FAgx8zT6hFxp215bpDs05PYM+AmkqlhlK2NNA==
 
 "@react-native-firebase/messaging@^18.1.0":
   version "18.8.0"
@@ -7386,7 +7398,7 @@ pkg-up@^3.1.0:
   dependencies:
     find-up "^3.0.0"
 
-plist@^3.0.4, plist@^3.0.5:
+plist@^3.0.4, plist@^3.0.5, plist@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/plist/-/plist-3.1.0.tgz#797a516a93e62f5bde55e0b9cc9c967f860893c9"
   integrity sha512-uysumyrvkUX0rX/dEVqt8gC3sTBzd4zoWfLeS29nb53imdaXVvLINYXTI2GNqzaMuvacNx4uJQ8+b3zXR0pkgQ==

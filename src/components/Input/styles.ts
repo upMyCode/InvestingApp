@@ -9,14 +9,16 @@ export const Wrapper = styled.View`
 `;
 
 export const CustomInput = styled.TextInput`
-	font-family: 'Poppins-Light';
-	color: #ffffff;
+	font-family: 'Inter-Medium';
+	color: rgba(143, 114, 58, 0.95);
 	line-height: 21px;
 	font-size: 14px;
-	width: 200px;
-	border-bottom-width: 1px;
-	border-bottom-color: #d9d9d9;
+	width: 297px;
+	height: 56px;
+	border: 1px solid rgba(143, 114, 58, 0.95);
+	border-radius: 10px;
 	padding-bottom: 6px;
+	padding-left: 12px;
 `;
 
 export const FormImage = styled.Image`
@@ -24,7 +26,7 @@ export const FormImage = styled.Image`
 `;
 
 export const InputErrorText = styled.Text`
-	font-family: 'Poppins-Regular';
+	font-family: 'Inter-Medium';
 	color: #ed051c;
 	line-height: 21px;
 	font-size: 14px;

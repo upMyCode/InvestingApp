@@ -1,6 +1,6 @@
 import { Image } from 'react-native';
 import { StartScreenLogoIMG } from '@helpers/imagesResolve';
-import { StartScreenDimensions } from '@constants/dimensions';
+import { startScreenDimensions } from '@constants/dimensions';
 import { Wrapper, Description, ButtonText, MainWrapper, styles, ButtonWrapper } from './styles';
 import React from 'react';
 import textStrings from '@constants/textStrings';
@@ -20,17 +20,17 @@ export default function StartScreen() {
 			<Wrapper>
 				<Image
 					source={{ uri: StartScreenLogoIMG }}
-					width={StartScreenDimensions.logoWidth}
-					height={StartScreenDimensions.logoHeight}
+					width={startScreenDimensions.logoWidth}
+					height={startScreenDimensions.logoHeight}
 				/>
 				<Wrapper contentContainerStyle={styles.alignPosition}>
 					<Description>{textStrings.startScreenDescription}</Description>
 				</Wrapper>
 				<ButtonWrapper>
 					<Button
-						width={StartScreenDimensions.buttonWidth}
-						height={StartScreenDimensions.buttonHeight}
-						bRadius={StartScreenDimensions.buttonRadius}
+						width={startScreenDimensions.buttonWidth}
+						height={startScreenDimensions.buttonHeight}
+						bRadius={startScreenDimensions.buttonRadius}
 						onPress={handleNavigateToRegistration}
 						bColor='1px solid rgba(0, 0, 0, 0.2)'
 						boxShadow

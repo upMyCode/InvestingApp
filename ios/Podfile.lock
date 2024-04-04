@@ -18,11 +18,17 @@ PODS:
     - ReactCommon/turbomodule/core (= 0.71.10)
   - Firebase (10.20.0):
     - Firebase/Core (= 10.20.0)
+  - Firebase/Auth (10.20.0):
+    - Firebase/CoreOnly
+    - FirebaseAuth (~> 10.20.0)
   - Firebase/Core (10.20.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (~> 10.20.0)
   - Firebase/CoreOnly (10.20.0):
     - FirebaseCore (= 10.20.0)
+  - Firebase/Database (10.20.0):
+    - Firebase/CoreOnly
+    - FirebaseDatabase (~> 10.20.0)
   - Firebase/Messaging (10.20.0):
     - Firebase/CoreOnly
     - FirebaseMessaging (~> 10.20.0)
@@ -44,6 +50,14 @@ PODS:
     - GoogleUtilities/Network (~> 7.11)
     - "GoogleUtilities/NSData+zlib (~> 7.11)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
+  - FirebaseAppCheckInterop (10.23.0)
+  - FirebaseAuth (10.20.0):
+    - FirebaseAppCheckInterop (~> 10.17)
+    - FirebaseCore (~> 10.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
+    - GoogleUtilities/Environment (~> 7.8)
+    - GTMSessionFetcher/Core (< 4.0, >= 2.1)
+    - RecaptchaInterop (~> 100.0)
   - FirebaseCore (10.20.0):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.12)
@@ -52,6 +66,11 @@ PODS:
     - FirebaseCore (~> 10.0)
   - FirebaseCoreInternal (10.23.0):
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
+  - FirebaseDatabase (10.20.0):
+    - FirebaseAppCheckInterop (~> 10.17)
+    - FirebaseCore (~> 10.0)
+    - FirebaseSharedSwift (~> 10.0)
+    - leveldb-library (~> 1.22)
   - FirebaseInstallations (10.23.0):
     - FirebaseCore (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
@@ -66,6 +85,7 @@ PODS:
     - GoogleUtilities/Reachability (~> 7.8)
     - GoogleUtilities/UserDefaults (~> 7.8)
     - nanopb (< 2.30910.0, >= 2.30908.0)
+  - FirebaseSharedSwift (10.23.0)
   - Flipper (0.125.0):
     - Flipper-Folly (~> 2.6)
     - Flipper-RSocket (~> 1.4)
@@ -222,6 +242,7 @@ PODS:
   - hermes-engine/Pre-built (0.71.10)
   - JWT (3.0.0-beta.14):
     - Base64 (~> 1.1.2)
+  - leveldb-library (1.22.4)
   - libevent (2.1.12)
   - libwebp (1.3.2):
     - libwebp/demux (= 1.3.2)
@@ -618,6 +639,7 @@ PODS:
     - React-jsi (= 0.71.10)
     - React-logger (= 0.71.10)
     - React-perflogger (= 0.71.10)
+  - RecaptchaInterop (100.0.0)
   - RNDateTimePicker (7.6.2):
     - React-Core
   - RNDeviceInfo (10.12.0):
@@ -626,9 +648,17 @@ PODS:
     - React-Core
     - SDWebImage (~> 5.11.1)
     - SDWebImageWebPCoder (~> 0.8.4)
-  - RNFBApp (18.8.0):
+  - RNFBApp (18.9.0):
     - Firebase/CoreOnly (= 10.20.0)
     - React-Core
+  - RNFBAuth (19.1.2):
+    - Firebase/Auth (= 10.20.0)
+    - React-Core
+    - RNFBApp
+  - RNFBDatabase (19.1.2):
+    - Firebase/Database (= 10.20.0)
+    - React-Core
+    - RNFBApp
   - RNFBMessaging (18.8.0):
     - Firebase/Messaging (= 10.20.0)
     - FirebaseCoreExtension (= 10.20.0)
@@ -705,6 +735,7 @@ DEPENDENCIES:
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/React/FBReactNativeSpec`)
   - Firebase
+  - FirebaseAppCheckInterop
   - FirebaseCore
   - FirebaseCoreExtension
   - FirebaseCoreInternal
@@ -778,6 +809,8 @@ DEPENDENCIES:
   - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - RNFastImage (from `../node_modules/react-native-fast-image`)
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
+  - "RNFBAuth (from `../node_modules/@react-native-firebase/auth`)"
+  - "RNFBDatabase (from `../node_modules/@react-native-firebase/database`)"
   - "RNFBMessaging (from `../node_modules/@react-native-firebase/messaging`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
@@ -794,11 +827,15 @@ SPEC REPOS:
     - CocoaAsyncSocket
     - Firebase
     - FirebaseAnalytics
+    - FirebaseAppCheckInterop
+    - FirebaseAuth
     - FirebaseCore
     - FirebaseCoreExtension
     - FirebaseCoreInternal
+    - FirebaseDatabase
     - FirebaseInstallations
     - FirebaseMessaging
+    - FirebaseSharedSwift
     - Flipper
     - Flipper-Boost-iOSX
     - Flipper-DoubleConversion
@@ -817,6 +854,7 @@ SPEC REPOS:
     - GoogleUtilitiesComponents
     - GTMSessionFetcher
     - JWT
+    - leveldb-library
     - libevent
     - libwebp
     - MLImage
@@ -829,6 +867,7 @@ SPEC REPOS:
     - NextLevelSessionExporter
     - OpenSSL-Universal
     - PromisesObjC
+    - RecaptchaInterop
     - SDWebImage
     - SDWebImageWebPCoder
     - Sentry
@@ -930,6 +969,10 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-fast-image"
   RNFBApp:
     :path: "../node_modules/@react-native-firebase/app"
+  RNFBAuth:
+    :path: "../node_modules/@react-native-firebase/auth"
+  RNFBDatabase:
+    :path: "../node_modules/@react-native-firebase/database"
   RNFBMessaging:
     :path: "../node_modules/@react-native-firebase/messaging"
   RNGestureHandler:
@@ -959,11 +1002,15 @@ SPEC CHECKSUMS:
   FBReactNativeSpec: 90fc1a90b4b7a171e0a7c20ea426c1bf6ce4399c
   Firebase: 10c8cb12fb7ad2ae0c09ffc86cd9c1ab392a0031
   FirebaseAnalytics: a2731bf3670747ce8f65368b118d18aa8e368246
+  FirebaseAppCheckInterop: a1955ce8c30f38f87e7d091630e871e91154d65d
+  FirebaseAuth: 9c5c400d2c3055d8ae3a0284944c86fa95d48dac
   FirebaseCore: 28045c1560a2600d284b9c45a904fe322dc890b6
   FirebaseCoreExtension: 0659f035b88c5a7a15a9763c48c2e6ca8c0a2977
   FirebaseCoreInternal: 6a292e6f0bece1243a737e81556e56e5e19282e3
+  FirebaseDatabase: 7e838abb62ac2e1a1c792cbeb51df3c4b6607f54
   FirebaseInstallations: 42d6ead4605d6eafb3b6683674e80e18eb6f2c35
   FirebaseMessaging: 06c414a21b122396a26847c523d5c370f8325df5
+  FirebaseSharedSwift: c92645b392db3c41a83a0aa967de16f8bad25568
   Flipper: 26fc4b7382499f1281eb8cb921e5c3ad6de91fe0
   Flipper-Boost-iOSX: fd1e2b8cbef7e662a122412d7ac5f5bea715403c
   Flipper-DoubleConversion: 2dc99b02f658daf147069aad9dbd29d8feb06d30
@@ -984,6 +1031,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 0e876eea9782ec6462e91ab872711c357322c94f
   hermes-engine: d27603b55a48402501ad1928c05411dae9cd6b85
   JWT: ef71dfb03e1f842081e64dc42eef0e164f35d251
+  leveldb-library: 06a69cc7582d64b29424a63e085e683cc188230a
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   libwebp: 1786c9f4ff8a279e4dac1e8f385004d5fc253009
   MLImage: 1824212150da33ef225fbd3dc49f184cf611046c
@@ -1030,11 +1078,14 @@ SPEC CHECKSUMS:
   React-RCTText: 7404fd01809244d79d456f92cfe6f9fbadf69209
   React-RCTVibration: d13cc2d63286c633393d3a7f6f607cc2a09ec011
   React-runtimeexecutor: a9a1cd79996c9a0846e3232ecb25c64e1cc0172e
-  ReactCommon: 65718685d4095d06b4b1af8042e12f1df2925c31
+  ReactCommon: e7a0cdbb67f8da60677db83d693dea816780a6e9
+  RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
   RNDateTimePicker: fc2e4f2795877d45e84d85659bebe627eba5c931
   RNDeviceInfo: db5c64a060e66e5db3102d041ebe3ef307a85120
   RNFastImage: 5c9c9fed9c076e521b3f509fe79e790418a544e8
-  RNFBApp: 5810d39f89d38272f29d9908cb19ef641922c081
+  RNFBApp: a3e139715386fe79a09c387f2dbeb6890eb05b39
+  RNFBAuth: ba6ebc4a6ca684e6acdc1b49cc60f7af585f3489
+  RNFBDatabase: 837dd928dc540dec078fd20340c73f0c858ef525
   RNFBMessaging: 8863c0206cc1a5577678eac6c1ec2b2965bd8e52
   RNGestureHandler: 7909c50383a18f0cb10ce1db7262b9a6da504c03
   RNReanimated: be07c7ae209074d0e8a84cf38b7909457ac59a32
@@ -1052,6 +1103,6 @@ SPEC CHECKSUMS:
   Yoga: e7ea9e590e27460d28911403b894722354d73479
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: c2c3910a3d5035a4c524207ea06e4c02683fff9f
+PODFILE CHECKSUM: 033906c26d08f888e38c15374ba9ed8964d26b0a
 
 COCOAPODS: 1.12.1

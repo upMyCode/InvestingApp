@@ -11,7 +11,11 @@ export const ComplicityPasswordDarkTheme = {
 };
 
 export const InputDarkTheme = {
-	placeholder: '#FFFFFF',
+	placeholder: 'rgba(143, 114, 58, 0.95);',
 };
 
 export default colorPalette;
+
+export const RegistrationFormDarkTheme = {
+	button: '#D98639',
+};
