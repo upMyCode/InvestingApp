@@ -5,3 +5,8 @@ export const StartScreenDimensions = {
 	buttonHeight: 58,
 	buttonRadius: 10,
 };
+
+export const InputDimensions = {
+	imageWidth: 24,
+	imageHeight: 26,
+};

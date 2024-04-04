@@ -1,18 +1,28 @@
 import styled from 'styled-components/native';
 import colorPalette from '@theme/colors';
+import { StyleSheet } from 'react-native';
+
+export const styles = StyleSheet.create({
+	alignPosition: {
+		alignItems: 'center',
+	},
+});
 
 export const MainWrapper = styled.SafeAreaView`
 	flex: 1;
-	background-color: #ffffff;
+	background-color: ${colorPalette.white};
 `;
 
-export const Wrapper = styled.View`
-	background-color: #ffffff;
+export const Wrapper = styled.ScrollView`
+	background-color: ${colorPalette.white};
 	display: flex;
-	align-items: center;
 	width: 100%;
 `;
 
+export const ButtonWrapper = styled.View`
+	display: flex;
+	align-items: center;
+`;
 export const Description = styled.Text`
 	font-size: 16px;
 	color: ${colorPalette.textGold};
