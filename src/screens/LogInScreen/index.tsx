@@ -3,13 +3,13 @@ import React from 'react';
 import { MainWrapper, Wrapper, Description, ImageWrapper } from './styles';
 import { RegistrationScreenLogoIMG } from '@helpers/imagesResolve';
 import { registrationScreenDimensions } from '@constants/dimensions';
-import RegistrationForm from '@forms/RegistrationForm';
+import LogInForm from '@forms/LogInForm';
 
 const RegistrationScreen = () => {
 	return (
 		<MainWrapper>
 			<Wrapper>
-				<Description>Регистрация</Description>
+				<Description>Авторизация</Description>
 				<ImageWrapper>
 					<Image
 						source={{ uri: RegistrationScreenLogoIMG }}
@@ -17,7 +17,7 @@ const RegistrationScreen = () => {
 						height={registrationScreenDimensions.logoHeight}
 					/>
 				</ImageWrapper>
-				<RegistrationForm />
+				<LogInForm />
 			</Wrapper>
 		</MainWrapper>
 	);

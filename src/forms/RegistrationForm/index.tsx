@@ -3,44 +3,51 @@ import textStrings from '@constants/textStrings';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Button from '@components/Button';
 import Input from '@components/Input';
-import { RegistrationFormDarkTheme } from '@theme/colors';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { startScreenDimensions } from '@constants/dimensions';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 
 import { FormWrapper, RegistrationButtonContainer, RegistrationErrorText, ButtonText } from './styles';
-import { FormValues, RegistrationFormProps } from './types';
+import { FormValues } from './types';
+import FIREBASE_ERROR from '@constants/firebaseErrors';
+import { handleSignUpAPI } from '@api/auth/loginAPI';
 import validationSchema from './validationSchema';
+import { registrationFormDefaultState } from './constants/registrationFormDefaultState';
+import { UnRegistrationScreenParamList } from '@screens/StartScreen/types';
+
+import { useNavigation } from '@react-navigation/core';
+
+import type { StackNavigationProp } from '@react-navigation/stack';
 
 export default function RegistrationForm() {
 	const [registrationError, setRegistrationError] = useState<string>('');
+	const navigation = useNavigation<StackNavigationProp<UnRegistrationScreenParamList>>();
+	const { inputUserName, inputUserEmail, inputUserPassword, inputConfirmUserPassword } = textStrings;
 
-	const defaultValues = {
-		username: '',
-		useremail: '',
-		userpassword: '',
-		userconfirmpassword: '',
+	const handleNavigateToLogIn = () => {
+		navigation.navigate('LogInScreen');
 	};
+
 	const {
 		control,
 		handleSubmit,
 		formState: { errors },
 	} = useForm<FormValues>({
-		defaultValues,
+		defaultValues: registrationFormDefaultState,
 		mode: 'onChange',
 		resolver: yupResolver(validationSchema),
 	});
 
 	const handleSubmitForm = async (data: FormValues) => {
-		console.log(data)
-		// const response = await handleSignUpAPI(data.useremail, data.userpassword, data.username, data.usersurname);
-		// if (response && typeof response === 'string') {
-		// 	setRegistrationError(FIREBASE_ERROR[response]);
-		// } else if (response && typeof response !== 'string') {
-		// }
-	};
+		const response = await handleSignUpAPI(data.useremail, data.userpassword, data.username);
 
+		if (response && typeof response === 'string') {
+			setRegistrationError(FIREBASE_ERROR[response]);
+		} else if (response && typeof response !== 'string') {
+			handleNavigateToLogIn();
+		}
+	};
 	return (
 		<View>
 			<FormWrapper>
@@ -48,7 +55,7 @@ export default function RegistrationForm() {
 					control={control}
 					name='username'
 					formType='default'
-					placeholder={textStrings.registrationScreenInputUserName}
+					placeholder={inputUserName}
 					maxLength={RegistrationFormDimensions.inputMLength}
 					error={errors.username?.message ?? ''}
 				/>
@@ -56,7 +63,7 @@ export default function RegistrationForm() {
 					control={control}
 					name='useremail'
 					formType='default'
-					placeholder={textStrings.registrationScreenInputUserEmail}
+					placeholder={inputUserEmail}
 					maxLength={RegistrationFormDimensions.inputMLength}
 					error={errors.useremail?.message ?? ''}
 				/>
@@ -64,7 +71,7 @@ export default function RegistrationForm() {
 					control={control}
 					name='userpassword'
 					formType='default'
-					placeholder={textStrings.registrationScreenInputUserPassword}
+					placeholder={inputUserPassword}
 					maxLength={RegistrationFormDimensions.inputMLengthXL}
 					secureTextEntry
 					error={errors.userpassword?.message ?? ''}
@@ -73,7 +80,7 @@ export default function RegistrationForm() {
 					control={control}
 					name='userconfirmpassword'
 					formType='default'
-					placeholder={textStrings.registrationScreenInputConfirmUserPassword}
+					placeholder={inputConfirmUserPassword}
 					maxLength={RegistrationFormDimensions.inputMLengthXL}
 					secureTextEntry
 					error={errors.userconfirmpassword?.message ?? ''}

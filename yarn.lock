@@ -7813,11 +7813,6 @@ react-native-toast-message@^2.1.6:
   resolved "https://registry.yarnpkg.com/react-native-toast-message/-/react-native-toast-message-2.2.0.tgz#c53a4746b15616858a7d61c4386b92cbe9fbf911"
   integrity sha512-AFti8VzUk6JvyGAlLm9/BknTNDXrrhqnUk7ak/pM7uCTxDPveAu2ekszU0on6vnUPFnG04H/QfYE2IlETqeaWw==
 
-react-native-vision-camera@2.16.1:
-  version "2.16.1"
-  resolved "https://registry.yarnpkg.com/react-native-vision-camera/-/react-native-vision-camera-2.16.1.tgz#b1af6d2161a7b19dc39da8f645344a63b0d4ded8"
-  integrity sha512-2utw/1EkgeaL6CLQX9Bm6HEpkmkbyx/dBJmwjA2nVz3IuXn5ys57NwMa0o/qg8proSGvcs8XKpqtQtnMPA1P+w==
-
 react-native@0.71.10:
   version "0.71.10"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.71.10.tgz#4294d289b4226a3f35bd627bb157fc1f18395d58"
@@ -9189,11 +9184,6 @@ vary@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==
-
-vision-camera-code-scanner@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/vision-camera-code-scanner/-/vision-camera-code-scanner-0.2.0.tgz#8adc0694319a17f6a95f6dfacc02ab7ac29b4742"
-  integrity sha512-H5hVkXfbIcGdg9YlhuS8Y/xDX5e32Vo6eK5FyDQsE9AGVjlqEHMmSLHZg7BX8UUm4ADmiAZc8wzc4n8TUqGr0g==
 
 vlq@^1.0.0:
   version "1.0.1"
