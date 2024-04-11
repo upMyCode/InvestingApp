@@ -3,7 +3,7 @@ import { StartScreenLogoIMG } from '@helpers/imagesResolve';
 import { startScreenDimensions } from '@constants/dimensions';
 import { Wrapper, Description, ButtonText, MainWrapper, styles, ButtonWrapper } from './styles';
 import React from 'react';
-import textStrings from '@constants/textStrings';
+import textStrings from '@constants/textStrings/textStrings';
 import Button from '@components/Button';
 import { UnRegistrationScreenParamList } from './types';
 import { useNavigation } from '@react-navigation/core';

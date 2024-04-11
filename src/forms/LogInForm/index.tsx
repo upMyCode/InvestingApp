@@ -1,5 +1,5 @@
 import { RegistrationFormDimensions } from '@constants/dimensions';
-import textStrings from '@constants/textStrings';
+import textStrings from '@constants/textStrings/textStrings';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Button from '@components/Button';
 import Input from '@components/Input';
@@ -15,6 +15,8 @@ import { handleSignInAPI } from '@api/auth/loginAPI';
 import validationSchema from './validationSchema';
 import { logInFormDefaultState } from './constants/logInFormDefaultState';
 import { UnRegistrationScreenParamList } from '@screens/StartScreen/types';
+import { getLogInFormData } from './helpers/getLogInFormData/getLogInFormData';
+import { getError } from './helpers/getError/getError';
 
 import { useNavigation } from '@react-navigation/core';
 
@@ -23,7 +25,7 @@ import type { StackNavigationProp } from '@react-navigation/stack';
 export default function LogInForm() {
 	const [registrationError, setRegistrationError] = useState<string>('');
 	const navigation = useNavigation<StackNavigationProp<UnRegistrationScreenParamList>>();
-	const { inputUserEmail, inputUserPassword, logInScreenButtonText } = textStrings;
+	const { logInScreenButtonText } = textStrings;
 
 	const handleNavigateToLogIn = () => {
 		navigation.navigate('LogInScreen');
@@ -47,26 +49,26 @@ export default function LogInForm() {
 		} else if (response && typeof response !== 'string') {
 		}
 	};
+
+	const formData = getLogInFormData(errors);
 	return (
 		<View>
 			<FormWrapper>
-				<Input
-					control={control}
-					name='useremail'
-					formType='default'
-					placeholder={inputUserEmail}
-					maxLength={RegistrationFormDimensions.inputMLength}
-					error={errors.useremail?.message ?? ''}
-				/>
-				<Input
-					control={control}
-					name='userpassword'
-					formType='default'
-					placeholder={inputUserPassword}
-					maxLength={RegistrationFormDimensions.inputMLengthXL}
-					secureTextEntry
-					error={errors.userpassword?.message ?? ''}
-				/>
+				{formData.map(({ errors, maxLength, name, placeholder, formType, secureTextEntry }) => {
+					const error = getError(name, errors);
+					return (
+						<Input
+							key={name}
+							control={control}
+							name={name}
+							formType={formType}
+							placeholder={placeholder}
+							maxLength={maxLength}
+							secureTextEntry={!!secureTextEntry}
+							error={error ?? ''}
+						/>
+					);
+				})}
 				{registrationError && <RegistrationErrorText>{registrationError}</RegistrationErrorText>}
 			</FormWrapper>
 			<RegistrationButtonContainer>
