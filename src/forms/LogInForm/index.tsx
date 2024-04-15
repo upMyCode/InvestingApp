@@ -1,4 +1,3 @@
-import { RegistrationFormDimensions } from '@constants/dimensions';
 import textStrings from '@constants/textStrings/textStrings';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Button from '@components/Button';
@@ -6,7 +5,8 @@ import Input from '@components/Input';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { startScreenDimensions } from '@constants/dimensions';
-import { View, Text } from 'react-native';
+import { useAppDispatch } from '@store/hooks';
+import { View } from 'react-native';
 
 import { FormWrapper, RegistrationButtonContainer, RegistrationErrorText, ButtonText } from './styles';
 import { FormValues } from './types';
@@ -14,22 +14,24 @@ import FIREBASE_ERROR from '@constants/firebaseErrors';
 import { handleSignInAPI } from '@api/auth/loginAPI';
 import validationSchema from './validationSchema';
 import { logInFormDefaultState } from './constants/logInFormDefaultState';
-import { UnRegistrationScreenParamList } from '@screens/StartScreen/types';
 import { getLogInFormData } from './helpers/getLogInFormData/getLogInFormData';
 import { getError } from './helpers/getError/getError';
-
+import { createNewUser } from '@slices/createUserSlice/createUserSlice';
 import { useNavigation } from '@react-navigation/core';
 
 import type { StackNavigationProp } from '@react-navigation/stack';
+import type { StackScreenParamList } from '@screens/StackScreen/types';
 
 export default function LogInForm() {
 	const [registrationError, setRegistrationError] = useState<string>('');
-	const navigation = useNavigation<StackNavigationProp<UnRegistrationScreenParamList>>();
+	const navigation = useNavigation<StackNavigationProp<StackScreenParamList>>();
 	const { logInScreenButtonText } = textStrings;
 
 	const handleNavigateToLogIn = () => {
 		navigation.navigate('LogInScreen');
 	};
+
+	const dispatch = useAppDispatch();
 
 	const {
 		control,
@@ -47,6 +49,12 @@ export default function LogInForm() {
 		if (response && typeof response === 'string') {
 			setRegistrationError(FIREBASE_ERROR[response]);
 		} else if (response && typeof response !== 'string') {
+			const USER = {
+				id: response.id,
+				username: response.username,
+				useremail: response.useremail,
+			};
+			dispatch(createNewUser(USER));
 		}
 	};
 

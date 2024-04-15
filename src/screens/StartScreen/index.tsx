@@ -5,13 +5,13 @@ import { Wrapper, Description, ButtonText, MainWrapper, styles, ButtonWrapper } 
 import React from 'react';
 import textStrings from '@constants/textStrings/textStrings';
 import Button from '@components/Button';
-import { UnRegistrationScreenParamList } from './types';
 import { useNavigation } from '@react-navigation/core';
 
 import type { StackNavigationProp } from '@react-navigation/stack';
+import type { StackScreenParamList } from '@screens/StackScreen/types';
 
 export default function StartScreen() {
-	const navigation = useNavigation<StackNavigationProp<UnRegistrationScreenParamList>>();
+	const navigation = useNavigation<StackNavigationProp<StackScreenParamList>>();
 	const handleNavigateToRegistration = () => {
 		navigation.navigate('RegistrationScreen');
 	};

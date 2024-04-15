@@ -6,15 +6,23 @@ import Input from '@components/Input';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { startScreenDimensions } from '@constants/dimensions';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { getError } from './helpers/getError/getError';
-import { FormWrapper, RegistrationButtonContainer, RegistrationErrorText, ButtonText } from './styles';
+import {
+	FormWrapper,
+	RegistrationButtonContainer,
+	RegistrationErrorText,
+	ButtonText,
+	FormDescription,
+	FormDescriptionLink,
+	FormDescriptionWrapper,
+} from './styles';
 import { FormValues } from './types';
 import FIREBASE_ERROR from '@constants/firebaseErrors';
 import { handleSignUpAPI } from '@api/auth/loginAPI';
 import validationSchema from './validationSchema';
 import { registrationFormDefaultState } from './constants/registrationFormDefaultState';
-import { UnRegistrationScreenParamList } from '@screens/StartScreen/types';
+import { StackScreenParamList } from '@screens/StackScreen/types';
 import { getRegistrationFormData } from './helpers/getRegistrationFormData/getRegistrationFormData';
 
 import { useNavigation } from '@react-navigation/core';
@@ -23,7 +31,7 @@ import type { StackNavigationProp } from '@react-navigation/stack';
 
 export default function RegistrationForm() {
 	const [registrationError, setRegistrationError] = useState<string>('');
-	const navigation = useNavigation<StackNavigationProp<UnRegistrationScreenParamList>>();
+	const navigation = useNavigation<StackNavigationProp<StackScreenParamList>>();
 	const { registrationScreenButtonText } = textStrings;
 
 	const handleNavigateToLogIn = () => {
@@ -69,6 +77,10 @@ export default function RegistrationForm() {
 						/>
 					);
 				})}
+				<FormDescriptionWrapper>
+					<FormDescription>Если вы уже зарегистрировались пожалуйста</FormDescription>
+					<FormDescriptionLink onPress={handleNavigateToLogIn}> войдите в аккаунт</FormDescriptionLink>
+				</FormDescriptionWrapper>
 				{registrationError && <RegistrationErrorText>{registrationError}</RegistrationErrorText>}
 			</FormWrapper>
 			<RegistrationButtonContainer>
@@ -79,7 +91,7 @@ export default function RegistrationForm() {
 					bColor='1px solid rgba(0, 0, 0, 0.2)'
 					boxShadow
 					bgColor='#FFFFFF'
-					mt={80}
+					mt={50}
 					onPress={handleSubmit(handleSubmitForm)}
 				>
 					<ButtonText>{registrationScreenButtonText}</ButtonText>

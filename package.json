@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.1.1",
+    "@react-native-async-storage/async-storage": "^1.23.1",
     "@react-native-community/datetimepicker": "^7.1.0",
     "@react-native-community/geolocation": "^3.0.6",
     "@react-native-community/netinfo": "^9.3.10",
@@ -74,6 +75,7 @@
     "react-native-toast-message": "^2.1.6",
     "react-native-uuid": "^2.0.2",
     "react-query": "^3.39.3",
+    "react-redux": "^9.1.1",
     "redux": "^5.0.1",
     "redux-persist": "^6.0.0",
     "styled-components": "^6.1.8",
