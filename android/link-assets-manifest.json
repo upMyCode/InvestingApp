@@ -22,8 +22,16 @@
       "sha1": "cbb2506d8da21edbb2dc8cfa26e3b42a97d138f8"
     },
     {
+      "path": "src/assets/fonts/Inter-LightItalic.otf",
+      "sha1": "6716c0590ef33f9ca0155cd5c5d99f8ca90b5834"
+    },
+    {
       "path": "src/assets/fonts/Inter-Medium.ttf",
       "sha1": "e76f580811e031813e7150131a0724811cdd737a"
+    },
+    {
+      "path": "src/assets/fonts/Inter-MediumItalic.otf",
+      "sha1": "89d0a6cca45c1ac1cb30c1957b9520b703c42933"
     },
     {
       "path": "src/assets/fonts/Inter-Regular.ttf",
@@ -32,6 +40,10 @@
     {
       "path": "src/assets/fonts/Inter-SemiBold.ttf",
       "sha1": "5e0c44e57e7e090252d79f622899e67585bb892c"
+    },
+    {
+      "path": "src/assets/fonts/Inter-SemiBoldItalic.otf",
+      "sha1": "8cf127ce6e16f95dccdae0eb553493d625bd0756"
     },
     {
       "path": "src/assets/fonts/Inter-Thin.ttf",

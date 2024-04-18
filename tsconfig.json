@@ -18,7 +18,9 @@
 			"@locales/*": ["src/locales/*"],
 			"@providers/*": ["src/providers/*"],
 			"@types/*": ["src/types/*"],
-			"@helpers/*": ["src/helpers/*"]
+			"@helpers/*": ["src/helpers/*"],
+			"@slices/*": ["src/slices/*"],
+			"@store/*": ["src/store/*"]
 		},
 		"skipLibCheck": true,
 		"resolveJsonModule": true

@@ -1,4 +1,4 @@
-export type UnRegistrationScreenParamList = {
+export type StackScreenParamList = {
 	StartScreen: undefined;
 	RegistrationScreen: undefined;
 	LogInScreen: undefined;

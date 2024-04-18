@@ -46,6 +46,8 @@ module.exports = {
 					'@config': './src/config',
 					'@types': './src/types',
 					'@helpers': './src/helpers',
+					'@slices': './src/slices',
+					'@store': './src/store',
 				},
 			},
 		],
