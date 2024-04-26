@@ -4,6 +4,7 @@ import type { StackScreenParamList } from './types';
 import StartScreen from '../StartScreen';
 import RegistrationScreen from '../RegistrationScreen';
 import LogInScreen from '../LogInScreen';
+import TabScreens from '../TabScreens';
 import { useAppSelector } from '@store/hooks';
 
 const Stack = createStackNavigator<StackScreenParamList>();
@@ -21,8 +22,9 @@ export default function StackScreen() {
 					<Stack.Screen name='LogInScreen' component={LogInScreen} />
 				</Stack.Navigator>
 			) : (
-				<Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName='StartScreen'>
+				<Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName='TabScreens'>
 					<Stack.Screen name='LogInScreen' component={LogInScreen} />
+					<Stack.Screen name='TabScreens' component={TabScreens} />
 				</Stack.Navigator>
 			)}
 		</NavigationContainer>
