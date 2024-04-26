@@ -40,6 +40,8 @@ export const handleSignUpAPI = async (email: string, password: string, name: str
 					id: isUserCreated.user.uid,
 					username: name,
 					useremail: email,
+					userbalance: 0,
+					userstocks: [],
 				});
 
 				return isUserCreated.user;
