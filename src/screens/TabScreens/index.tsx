@@ -6,7 +6,7 @@ import TabBarItem from '@components/TabBarItem';
 import { isDisableTabBarInterface } from '@helpers/isDisableTabBarInterface';
 import React from 'react';
 import { View } from 'react-native';
-
+import AnalyticsStackScreen from '@screens/AnalyticsStackScreen';
 import inlineStyle from './styles';
 import { TabScreensParamList } from './types';
 
@@ -42,8 +42,8 @@ export default function TabScreens() {
 						},
 					};
 				}}
-				key='HomeStackScreen'
-				name='HomeStackScreen'
+				key='HomeScreen'
+				name='HomeScreen'
 				component={() => <View></View>}
 			/>
 			<Tab.Screen
@@ -56,13 +56,13 @@ export default function TabScreens() {
 						})(route),
 
 						tabBarIcon: ({ focused }) => {
-							return <TabBarItem label='AnalyticsScreen' isFocused={focused} />;
+							return <TabBarItem label='AnalyticsStackScreen' isFocused={focused} />;
 						},
 					};
 				}}
-				key='AnalyticsScreen'
-				name='AnalyticsScreen'
-				component={() => <View></View>}
+				key='AnalyticsStackScreen'
+				name='AnalyticsStackScreen'
+				component={AnalyticsStackScreen}
 			/>
 			<Tab.Screen
 				options={({ route }) => {
