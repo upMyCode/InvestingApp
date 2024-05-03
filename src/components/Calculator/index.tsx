@@ -8,12 +8,16 @@ import React, { useState } from 'react';
 import { Alert, Dimensions, LayoutChangeEvent } from 'react-native';
 import { changeMathExpression, removeMathExpression } from '@slices/mathExpressionSlice';
 import { changeMathResult, removeMathResult } from '@slices/mathResultSlice';
+import { useNavigation } from '@react-navigation/core';
 import Display from '@components/Display';
 import Keypad from '@components/Keypad';
+import Header from '@components/Header';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 
 import Wrapper from './styles';
 import type BracketsState from './types';
+import type { StackNavigationProp } from '@react-navigation/stack';
+import type { TabScreensParamList } from '@screens/TabScreens/types';
 
 function Calculator(): JSX.Element {
 	const { mathExpression } = useAppSelector((state) => {
@@ -23,11 +27,16 @@ function Calculator(): JSX.Element {
 		return state.mathResultSlice;
 	});
 	const [isExpressionOutOfBounds, setExpressionBoundsStatus] = useState<boolean>(false);
+	const navigation = useNavigation<StackNavigationProp<TabScreensParamList>>();
 	const dispatch = useAppDispatch();
 	const [bracketsCounter, setBracketsCounter] = useState<BracketsState>({
 		open: 0,
 		close: 0,
 	});
+
+	const handleNavigateBack = () => {
+		navigation.goBack();
+	};
 
 	const handleLayout = (event: LayoutChangeEvent) => {
 		const { width } = event.nativeEvent.layout;
@@ -142,6 +151,7 @@ function Calculator(): JSX.Element {
 	};
 	return (
 		<Wrapper>
+			<Header title='Calculator' handlerForReturnToPage={handleNavigateBack} />
 			<Display handleLayout={handleLayout} expression={mathExpression} result={mathResult} />
 			<Keypad handleSetMathExpression={handleSetMathExpression} />
 		</Wrapper>

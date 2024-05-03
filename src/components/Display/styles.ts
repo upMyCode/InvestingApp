@@ -9,7 +9,7 @@ const Wrapper = styled.View`
 	align-items: flex-end;
 	width: 100%;
 	min-height: 241px;
-	padding-top: 69px;
+	padding-top: 92px;
 `;
 
 const Expression = styled.Text<ExpressionProps>`
