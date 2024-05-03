@@ -1,5 +1,15 @@
 import { Image } from 'react-native';
-import { StartScreenLogo, RegistrationScreenLogo, HomeLogo, AnalyticLogo, PortfolioLogo, UserProfileLogo, ChatLogo } from '@assets/index';
+import {
+	StartScreenLogo,
+	RegistrationScreenLogo,
+	HomeLogo,
+	AnalyticLogo,
+	PortfolioLogo,
+	UserProfileLogo,
+	ChatLogo,
+	ArrowLogo,
+	CalculatorLogo,
+} from '@assets/index';
 
 export const StartScreenLogoIMG = Image.resolveAssetSource(StartScreenLogo).uri;
 export const RegistrationScreenLogoIMG = Image.resolveAssetSource(RegistrationScreenLogo).uri;
@@ -8,3 +18,5 @@ export const AnalyticLogoIMG = Image.resolveAssetSource(AnalyticLogo).uri;
 export const PortfolioLogoIMG = Image.resolveAssetSource(PortfolioLogo).uri;
 export const UserProfileLogoIMG = Image.resolveAssetSource(UserProfileLogo).uri;
 export const ChatLogoIMG = Image.resolveAssetSource(ChatLogo).uri;
+export const ArrowLogoIMG = Image.resolveAssetSource(ArrowLogo).uri;
+export const CalculatorLogoIMG = Image.resolveAssetSource(CalculatorLogo).uri;

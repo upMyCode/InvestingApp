@@ -16,7 +16,7 @@ export default function TabBarItem({ label, isFocused }: Item) {
 						<Image width={home.width} height={home.height} source={{ uri: HomeLogoIMG }} />
 					</ImageWrapper>
 				);
-			case 'AnalyticsScreen':
+			case 'AnalyticsStackScreen':
 				return (
 					<ImageWrapper>
 						<Image width={analytics.width} height={analytics.height} source={{ uri: AnalyticLogoIMG }} />

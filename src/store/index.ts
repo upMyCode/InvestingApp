@@ -2,6 +2,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import createUserSlice from '@slices/createUserSlice/createUserSlice';
 import { Action } from 'redux';
+import mathExpressionSlice from '@slices/mathExpressionSlice';
+import mathResultSlice from '@slices/mathResultSlice';
 import { createTransform, FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE } from 'redux-persist';
 
 import { State } from './types';
@@ -20,6 +22,8 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
 	createUserSlice,
+	mathExpressionSlice,
+	mathResultSlice,
 });
 
 export type RootReducer = ReturnType<typeof rootReducer>;
