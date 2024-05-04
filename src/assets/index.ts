@@ -7,6 +7,8 @@ import UserProfileLogo from './img/UserProfileLogo.png';
 import ChatLogo from './img/ChatLogo.png';
 import ArrowLogo from './img/ArrowLogo.png';
 import CalculatorLogo from './img/CalculatorLogo.png';
+import AnalyticsNavigationLogo from './img/AnalyticsNavigationLogo.png';
+import AdminLogo from './img/AdminLogo.png';
 
 export {
 	StartScreenLogo,
@@ -18,4 +20,6 @@ export {
 	ChatLogo,
 	ArrowLogo,
 	CalculatorLogo,
+	AnalyticsNavigationLogo,
+	AdminLogo,
 };
