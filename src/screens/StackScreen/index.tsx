@@ -23,8 +23,8 @@ export default function StackScreen() {
 				</Stack.Navigator>
 			) : (
 				<Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName='TabScreens'>
-					<Stack.Screen name='LogInScreen' component={LogInScreen} />
 					<Stack.Screen name='TabScreens' component={TabScreens} />
+					<Stack.Screen name='LogInScreen' component={LogInScreen} />
 				</Stack.Navigator>
 			)}
 		</NavigationContainer>

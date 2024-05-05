@@ -6,6 +6,7 @@ import HomeHeader from '@components/HomeHeader';
 import { useGetButtonsForSearchStocksType } from '@hooks/useGetButtonsForSearchStocksType/useGetButtonsForSearchStocksType';
 import { Wrapper, SearchTypesButtonsWrapper, SearchTypeText } from './styles';
 import Button from '@components/Button';
+import TickersList from '@components/TickersList';
 
 import type { Stocks } from '@constants/stocks/types';
 import type { StackNavigationProp } from '@react-navigation/stack';
@@ -22,8 +23,8 @@ const HomeScreen = () => {
 	const [stocks, setStocks] = useState<Stocks[] | null>([]);
 	const navigation = useNavigation<StackNavigationProp<TabScreensParamList>>();
 	const [sortCategories, setSortCategories] = useState<SearchCategories>({
-		searchType: '',
-		searchCategory: '',
+		searchType: 'All',
+		searchCategory: 'All',
 	});
 	const [error, setError] = useState<string>('');
 
@@ -51,12 +52,30 @@ const HomeScreen = () => {
 			};
 		});
 	};
+	const handleAllCategory = () => {
+		setSortCategories((prev) => {
+			return {
+				...prev,
+				searchType: 'All',
+			};
+		});
+	};
 
-	const searchTypesButtons = useGetButtonsForSearchStocksType(handleChooseStocksCategory, handleChooseETFCategory, handleBoundsCategory);
+	const searchTypesButtons = useGetButtonsForSearchStocksType(
+		handleChooseStocksCategory,
+		handleChooseETFCategory,
+		handleBoundsCategory,
+		handleAllCategory
+	);
 
 	const renderSearchTypeButton = ({ item }: ListRenderItemInfo<RenderSearchTypeButtonItem>) => {
+		const itemType = item.type.toLowerCase().split('').includes('s')
+			? item.type.toLowerCase().slice(0, item.type.toLowerCase().length - 1)
+			: item.type.toLowerCase();
+		const isButtonActive = sortCategories.searchType.toLowerCase() === itemType;
+
 		return (
-			<Button width={107} height={32} bgColor='#363534' bRadius={8} onPress={item.handler}>
+			<Button width={85} height={32} bgColor={isButtonActive ? '#9D7830' : '#363534'} bRadius={8} onPress={item.handler}>
 				<SearchTypeText>{item.type}</SearchTypeText>
 			</Button>
 		);
@@ -102,6 +121,7 @@ const HomeScreen = () => {
 					contentContainerStyle={{ flexDirection: 'row', justifyContent: 'space-between', flex: 1 }}
 				/>
 			</SearchTypesButtonsWrapper>
+			<TickersList renderData={stocks} searchCategories={sortCategories} maxHeightForList={380} />
 		</Wrapper>
 	);
 };

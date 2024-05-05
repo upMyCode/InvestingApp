@@ -3,7 +3,8 @@ type Handler = () => void;
 export const useGetButtonsForSearchStocksType = (
 	handleChooseStocksCategory: Handler,
 	handleChooseETFCategory: Handler,
-	handleBoundsCategory: Handler
+	handleBoundsCategory: Handler,
+	handleAllCategory: Handler
 ) => {
 	return [
 		{
@@ -17,6 +18,10 @@ export const useGetButtonsForSearchStocksType = (
 		{
 			type: 'Bounds',
 			handler: handleBoundsCategory,
+		},
+		{
+			type: 'All',
+			handler: handleAllCategory,
 		},
 	];
 };

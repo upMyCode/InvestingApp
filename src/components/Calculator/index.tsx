@@ -150,7 +150,7 @@ function Calculator(): JSX.Element {
 		}
 	};
 	return (
-		<Wrapper>
+		<Wrapper contentContainerStyle={{ alignItems: 'center' }}>
 			<Header title='Calculator' handlerForReturnToPage={handleNavigateBack} />
 			<Display handleLayout={handleLayout} expression={mathExpression} result={mathResult} />
 			<Keypad handleSetMathExpression={handleSetMathExpression} />

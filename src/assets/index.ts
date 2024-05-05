@@ -9,6 +9,8 @@ import ArrowLogo from './img/ArrowLogo.png';
 import CalculatorLogo from './img/CalculatorLogo.png';
 import AnalyticsNavigationLogo from './img/AnalyticsNavigationLogo.png';
 import AdminLogo from './img/AdminLogo.png';
+import CategoryLogo from './img/CategoryLogo.png';
+import SearchLogo from './img/SearchLogo.png';
 
 export {
 	StartScreenLogo,
@@ -22,4 +24,6 @@ export {
 	CalculatorLogo,
 	AnalyticsNavigationLogo,
 	AdminLogo,
+	CategoryLogo,
+	SearchLogo,
 };
