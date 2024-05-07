@@ -20,7 +20,6 @@ export const TickersHeader = styled.View`
 `;
 
 export const TickerDescription = styled.View`
-	width: 100%;
 	flex-direction: row;
 	align-items: flex-start;
 `;

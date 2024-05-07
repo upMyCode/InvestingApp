@@ -11,6 +11,7 @@ import AnalyticsNavigationLogo from './img/AnalyticsNavigationLogo.png';
 import AdminLogo from './img/AdminLogo.png';
 import CategoryLogo from './img/CategoryLogo.png';
 import SearchLogo from './img/SearchLogo.png';
+import BlackSearchLogo from './img/BlackSearchLogo.png';
 
 export {
 	StartScreenLogo,
@@ -26,4 +27,5 @@ export {
 	AdminLogo,
 	CategoryLogo,
 	SearchLogo,
+	BlackSearchLogo,
 };

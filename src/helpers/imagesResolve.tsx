@@ -13,6 +13,7 @@ import {
 	AdminLogo,
 	CategoryLogo,
 	SearchLogo,
+	BlackSearchLogo,
 } from '@assets/index';
 
 export const StartScreenLogoIMG = Image.resolveAssetSource(StartScreenLogo).uri;
@@ -28,3 +29,4 @@ export const AnalyticsNavigationLogoIMG = Image.resolveAssetSource(AnalyticsNavi
 export const AdminLogoIMG = Image.resolveAssetSource(AdminLogo).uri;
 export const CategoryLogoIMG = Image.resolveAssetSource(CategoryLogo).uri;
 export const SearchLogoIMG = Image.resolveAssetSource(SearchLogo).uri;
+export const BlackSearchLogoIMG = Image.resolveAssetSource(BlackSearchLogo).uri;

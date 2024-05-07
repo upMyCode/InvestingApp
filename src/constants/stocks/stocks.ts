@@ -2483,3 +2483,13 @@ export const STOCKS: Stocks[] = [
 		],
 	},
 ];
+
+const stockSectorsList = Array.from(new Set(STOCKS.map((data) => data.sector))).map((sector) => ({
+	title: sector,
+}));
+
+stockSectorsList.unshift({
+	title: 'All',
+});
+
+export { stockSectorsList };

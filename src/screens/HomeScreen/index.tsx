@@ -61,6 +61,15 @@ const HomeScreen = () => {
 		});
 	};
 
+	const handleSetSearchCategory = (category: string) => {
+		setSortCategories((prev) => {
+			return {
+				...prev,
+				searchCategory: category,
+			};
+		});
+	};
+
 	const searchTypesButtons = useGetButtonsForSearchStocksType(
 		handleChooseStocksCategory,
 		handleChooseETFCategory,
@@ -121,7 +130,12 @@ const HomeScreen = () => {
 					contentContainerStyle={{ flexDirection: 'row', justifyContent: 'space-between', flex: 1 }}
 				/>
 			</SearchTypesButtonsWrapper>
-			<TickersList renderData={stocks} searchCategories={sortCategories} maxHeightForList={380} />
+			<TickersList
+				renderData={stocks}
+				searchCategories={sortCategories}
+				maxHeightForList={380}
+				handleSetSearchCategory={handleSetSearchCategory}
+			/>
 		</Wrapper>
 	);
 };
