@@ -16,7 +16,7 @@ export const TickersHeader = styled.View`
 	flex-direction: row;
 	justify-content: space-between;
 	height: 48px;
-	margin: 12px 0 19px 0;
+	margin: 8px 0 19px 0;
 `;
 
 export const TickerDescription = styled.View`
