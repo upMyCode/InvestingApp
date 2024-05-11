@@ -8,7 +8,7 @@ export const Wrapper = styled.View`
 
 export const Content = styled.View<WrapperProps>`
 	width: 100%;
-	height: ${({ maxHeightForList }) => maxHeightForList};
+	height: ${({ maxHeightForList }) => maxHeightForList}px;
 `;
 
 export const TickersHeader = styled.View`

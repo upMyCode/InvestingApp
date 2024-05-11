@@ -1,17 +1,27 @@
-import { FlatList } from 'react-native';
+import { FlatList, Dimensions } from 'react-native';
 import { useEffect, useState } from 'react';
 import { handleUploadStocks, handleGetAllStocks } from '@api/stocks/stocksHelpers';
 import { useNavigation } from '@react-navigation/core';
 import HomeHeader from '@components/HomeHeader';
 import { useGetButtonsForSearchStocksType } from '@hooks/useGetButtonsForSearchStocksType/useGetButtonsForSearchStocksType';
-import { Wrapper, SearchTypesButtonsWrapper, SearchTypeText } from './styles';
+import {
+	Wrapper,
+	SearchTypesButtonsWrapper,
+	SearchTypeText,
+	MonthlyTickersInfoWrapper,
+	MonthlyTickersInfoItemWrapper,
+	MonthlyTickersItemTitle,
+	MonthlyTickersItemMoney,
+	MonthlyTickersItemItemsWrapper,
+	MonthlyTickersItemItemsText,
+} from './styles';
 import Button from '@components/Button';
 import TickersList from '@components/TickersList';
 
 import type { Stocks } from '@constants/stocks/types';
 import type { StackNavigationProp } from '@react-navigation/stack';
 import type { TabScreensParamList } from '@screens/TabScreens/types';
-import type { RenderSearchTypeButtonItem } from './types';
+import type { RenderSearchTypeButtonItem, RenderMonthlyTickersInfoItem } from './types';
 import type { ListRenderItemInfo } from 'react-native';
 
 interface SearchCategories {
@@ -27,6 +37,20 @@ const HomeScreen = () => {
 		searchCategory: 'All',
 	});
 	const [error, setError] = useState<string>('');
+	const monthlyTickersInfo = [
+		{
+			title: 'Buy monthly',
+			moneyInfo: 0,
+			items: 0,
+		},
+		{
+			title: 'Sold monthly',
+			moneyInfo: 0,
+			items: 0,
+		},
+	];
+	const screenWidth = Dimensions.get('screen').width;
+	const screenHeight = Dimensions.get('screen').width;
 
 	const handleChooseStocksCategory = () => {
 		setSortCategories((prev) => {
@@ -84,9 +108,27 @@ const HomeScreen = () => {
 		const isButtonActive = sortCategories.searchType.toLowerCase() === itemType;
 
 		return (
-			<Button width={85} height={32} bgColor={isButtonActive ? '#9D7830' : '#363534'} bRadius={8} onPress={item.handler}>
+			<Button
+				width={screenWidth >= 390 ? 85 : 80}
+				height={32}
+				bgColor={isButtonActive ? '#9D7830' : '#363534'}
+				bRadius={8}
+				onPress={item.handler}
+			>
 				<SearchTypeText>{item.type}</SearchTypeText>
 			</Button>
+		);
+	};
+
+	const renderMonthlyTickersInfo = ({ item }: ListRenderItemInfo<RenderMonthlyTickersInfoItem>) => {
+		return (
+			<MonthlyTickersInfoItemWrapper>
+				<MonthlyTickersItemTitle>{item.title}</MonthlyTickersItemTitle>
+				<MonthlyTickersItemMoney>{`${item.moneyInfo}$`}</MonthlyTickersItemMoney>
+				<MonthlyTickersItemItemsWrapper>
+					<MonthlyTickersItemItemsText>{`${item.items} ${item.items > 1 ? 'items' : 'item'}`}</MonthlyTickersItemItemsText>
+				</MonthlyTickersItemItemsWrapper>
+			</MonthlyTickersInfoItemWrapper>
 		);
 	};
 
@@ -130,10 +172,19 @@ const HomeScreen = () => {
 					contentContainerStyle={{ flexDirection: 'row', justifyContent: 'space-between', flex: 1 }}
 				/>
 			</SearchTypesButtonsWrapper>
+			<MonthlyTickersInfoWrapper>
+				<FlatList
+					horizontal
+					keyExtractor={({ title }) => title}
+					data={monthlyTickersInfo}
+					renderItem={renderMonthlyTickersInfo}
+					contentContainerStyle={{ flexDirection: 'row', justifyContent: 'space-between', flex: 1 }}
+				/>
+			</MonthlyTickersInfoWrapper>
 			<TickersList
 				renderData={stocks}
 				searchCategories={sortCategories}
-				maxHeightForList={380}
+				maxHeightForList={screenHeight >= 844 ? 380 : 250}
 				handleSetSearchCategory={handleSetSearchCategory}
 			/>
 		</Wrapper>
