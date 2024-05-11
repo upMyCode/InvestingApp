@@ -7,6 +7,7 @@ import { isDisableTabBarInterface } from '@helpers/isDisableTabBarInterface';
 import React from 'react';
 import { View } from 'react-native';
 import AnalyticsStackScreen from '@screens/AnalyticsStackScreen';
+import HomeScreen from '@screens/HomeScreen';
 import inlineStyle from './styles';
 import { TabScreensParamList } from './types';
 
@@ -44,7 +45,7 @@ export default function TabScreens() {
 				}}
 				key='HomeScreen'
 				name='HomeScreen'
-				component={() => <View></View>}
+				component={HomeScreen}
 			/>
 			<Tab.Screen
 				options={({ route }) => {

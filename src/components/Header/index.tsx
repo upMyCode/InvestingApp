@@ -13,7 +13,7 @@ const Header = ({ title, handlerForReturnToPage, isCalculatorNavigationActive, c
 				<Text>{title}</Text>
 				<ButtonsList>
 					{isCalculatorNavigationActive && (
-						<Button width={18} height={18} bgColor='transparent' onPress={calculatorNavigationHandler}>
+						<Button width={24} height={24} bgColor='transparent' onPress={calculatorNavigationHandler}>
 							<Image source={{ uri: CalculatorLogoIMG }} width={20} height={20} />
 						</Button>
 					)}

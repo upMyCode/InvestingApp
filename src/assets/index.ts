@@ -7,6 +7,11 @@ import UserProfileLogo from './img/UserProfileLogo.png';
 import ChatLogo from './img/ChatLogo.png';
 import ArrowLogo from './img/ArrowLogo.png';
 import CalculatorLogo from './img/CalculatorLogo.png';
+import AnalyticsNavigationLogo from './img/AnalyticsNavigationLogo.png';
+import AdminLogo from './img/AdminLogo.png';
+import CategoryLogo from './img/CategoryLogo.png';
+import SearchLogo from './img/SearchLogo.png';
+import BlackSearchLogo from './img/BlackSearchLogo.png';
 
 export {
 	StartScreenLogo,
@@ -18,4 +23,9 @@ export {
 	ChatLogo,
 	ArrowLogo,
 	CalculatorLogo,
+	AnalyticsNavigationLogo,
+	AdminLogo,
+	CategoryLogo,
+	SearchLogo,
+	BlackSearchLogo,
 };
