@@ -27,21 +27,14 @@ const AnalyticsScreen = () => {
 		searchType: 'All',
 		searchCategory: 'All',
 	});
+	const [selectedItem, setSelectedItem] = useState<null | Stocks>(null);
 	const [error, setError] = useState<string>('');
-	const monthlyTickersInfo = [
-		{
-			title: 'Buy monthly',
-			moneyInfo: 0,
-			items: 0,
-		},
-		{
-			title: 'Sold monthly',
-			moneyInfo: 0,
-			items: 0,
-		},
-	];
 	const screenWidth = Dimensions.get('screen').width;
 	const screenHeight = Dimensions.get('screen').width;
+
+	const handleSetSelectedItem = (item: Stocks) => {
+		setSelectedItem(item);
+	};
 
 	const handleChooseStocksCategory = () => {
 		setSortCategories((prev) => {
@@ -113,8 +106,7 @@ const AnalyticsScreen = () => {
 			</Button>
 		);
 	};
-
-	//Run this if you want upload stocks to the DB
+	// //Run this if you want upload stocks to the DB
 	// useEffect(() => {
 	// 	const handleUploadStockToTheDB = async () => {
 	// 		const response = await handleUploadStocks();
@@ -163,8 +155,14 @@ const AnalyticsScreen = () => {
 					contentContainerStyle={{ flexDirection: 'row', justifyContent: 'space-between', flex: 1 }}
 				/>
 			</SearchTypesButtonsWrapper>
-			<FinanceDiagram searchType={sortCategories.searchType} />
+			<FinanceDiagram
+				searchType={!selectedItem ? 'Choose ticker' : selectedItem.symbol}
+				modifiedStocks={selectedItem?.modifiedStocks}
+			/>
 			<TickersList
+				selectedItem={selectedItem}
+				isChooseableItems
+				handleSelectItem={handleSetSelectedItem}
 				renderData={stocks}
 				searchCategories={sortCategories}
 				maxHeightForList={screenHeight >= 844 ? 380 : 250}

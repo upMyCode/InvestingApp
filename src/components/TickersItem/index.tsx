@@ -14,10 +14,10 @@ import { sliceDescription } from '@helpers/sliceDescription';
 
 import type { TickersItemProps } from './types';
 
-const TickersItem = ({ industry, symbol, image, price }: TickersItemProps) => {
+const TickersItem = ({ industry, symbol, image, price, isSelected }: TickersItemProps) => {
 	const priceInfo = `${price}$`;
 	return (
-		<Wrapper>
+		<Wrapper isSelected={isSelected}>
 			<TickerInfo>
 				<TickersImageWrapper>
 					<Image source={{ uri: image }} width={24} height={24} />

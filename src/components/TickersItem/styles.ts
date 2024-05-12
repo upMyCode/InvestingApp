@@ -1,12 +1,14 @@
 import styled from 'styled-components/native';
 
-export const Wrapper = styled.View`
+import type { WrapperProps } from './types';
+
+export const Wrapper = styled.View<WrapperProps>`
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
-	background-color: #8f723a;
+	background-color: ${({ isSelected }) => (isSelected ? 'transparent' : '#8f723a')};
 	border-radius: 10px;
 	margin: 5px 0;
 	padding: 5px 53px 5px 20px;
