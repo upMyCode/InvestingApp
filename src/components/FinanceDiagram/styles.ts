@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import { StyleSheet } from 'react-native';
 
-export const Wrapper = styled.View`
+export const Wrapper = styled.ScrollView`
 	width: 90%;
 	position: relative;
 `;
@@ -20,7 +20,7 @@ export const DateDiagramButtonsPickerWrapper = styled.View`
 	width: 66px;
 	position: absolute;
 	z-index: 1000;
-	left: 240px;
+	left: 265px;
 	top: 22px;
 `;
 

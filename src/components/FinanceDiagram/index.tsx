@@ -1,9 +1,10 @@
-import { FlatList, Dimensions, View } from 'react-native';
+import { FlatList, Dimensions, View, ScrollView } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 import { Wrapper, StockTypeText, DateDiagramButtonsPickerWrapper, SearchDateButtonText, styles } from './styles';
 import { useGetButtonsForDiagram } from '@hooks/useGetButtonsForDiagram/useGetButtonsForDiagram';
 import Button from '@components/Button';
 import { getPriceListInThisWeek } from '@helpers/getPriceListInThisWeek';
+import { getPriceListInThisDay } from '@helpers/getPriceListInThisDay';
 import { useState } from 'react';
 
 import type { FinanceDiagramProps } from './types';
@@ -14,6 +15,50 @@ const FinanceDiagram = ({ searchType, modifiedStocks }: FinanceDiagramProps) => 
 	const firstLetter = searchType[0];
 	const [dateButtonType, setDateButtonType] = useState('Day');
 	const recreateSearchType = firstLetter.toUpperCase() + searchType.slice(1);
+	const weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+	const dayHours = [
+		'0h',
+		'1h',
+		'2h',
+		'3h',
+		'4h',
+		'5h',
+		'6h',
+		'7h',
+		'8h',
+		'9h',
+		'10h',
+		'11h',
+		'12h',
+		'13h',
+		'14h',
+		'15h',
+		'16h',
+		'17h',
+		'18h',
+		'19h',
+		'20h',
+		'21h',
+		'22h',
+		'23h',
+	];
+
+	const changeDataSet = (dayDataSet, weekDataSet) => {
+		if (dateButtonType === 'Day') {
+			if (dayDataSet) {
+				return dayDataSet;
+			} else {
+				return [0];
+			}
+		} else {
+			if (weekDataSet) {
+				return weekDataSet.values;
+			} else {
+				return [0];
+			}
+		}
+	};
+	const labels = dateButtonType === 'Day' ? dayHours : weekDays;
 
 	const handleSetButtonTypeAsDay = () => {
 		setDateButtonType('Day');
@@ -22,8 +67,12 @@ const FinanceDiagram = ({ searchType, modifiedStocks }: FinanceDiagramProps) => 
 	const handleSetButtonTypeAsWeek = () => {
 		setDateButtonType('Week');
 	};
-	const stocksByWeek = modifiedStocks ? getPriceListInThisWeek(modifiedStocks) : [];
+
+	const stocksByWeek = modifiedStocks ? getPriceListInThisWeek(modifiedStocks) : null;
+	const stocksByDay = modifiedStocks ? getPriceListInThisDay(modifiedStocks) : null;
 	const buttonsList = useGetButtonsForDiagram(handleSetButtonTypeAsDay, handleSetButtonTypeAsWeek);
+	const dataSet = changeDataSet(stocksByDay, stocksByWeek);
+
 	const renderSearchDateButton = ({ item }: ListRenderItemInfo<DiagramButton>) => {
 		return (
 			<>
@@ -43,7 +92,7 @@ const FinanceDiagram = ({ searchType, modifiedStocks }: FinanceDiagramProps) => 
 	};
 
 	return (
-		<Wrapper>
+		<Wrapper horizontal>
 			<StockTypeText>{firstLetter === firstLetter.toUpperCase() ? searchType : recreateSearchType}</StockTypeText>
 			<DateDiagramButtonsPickerWrapper>
 				<FlatList
@@ -56,21 +105,14 @@ const FinanceDiagram = ({ searchType, modifiedStocks }: FinanceDiagramProps) => 
 			</DateDiagramButtonsPickerWrapper>
 			<LineChart
 				data={{
-					labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+					labels: labels,
 					datasets: [
 						{
-							data: [
-								Math.random() * 100,
-								Math.random() * 100,
-								Math.random() * 100,
-								Math.random() * 100,
-								Math.random() * 100,
-								Math.random() * 100,
-							],
+							data: dataSet,
 						},
 					],
 				}}
-				width={Dimensions.get('window').width * 0.9} // from react-native
+				width={(Dimensions.get('screen').width * labels.length) / 7.75} // from react-native
 				height={261}
 				yAxisLabel='$'
 				yAxisInterval={0.7} // optional, defaults to 1

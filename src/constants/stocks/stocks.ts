@@ -73,19 +73,19 @@ export const STOCKS: Stocks[] = [
 				changes: 0.18,
 			},
 			{
-				modifiedDate: createDateForStocksForThisDay(-1),
+				modifiedDate: createDateForStocksForThisDay(1),
 				priceBefore: 52.62,
 				priceAfter: 52.61,
 				changes: -0.01,
 			},
 			{
-				modifiedDate: createDateForStocksForThisDay(-2),
+				modifiedDate: createDateForStocksForThisDay(2),
 				priceBefore: 52.63,
 				priceAfter: 52.62,
 				changes: -0.01,
 			},
 			{
-				modifiedDate: createDateForStocksForThisDay(-6),
+				modifiedDate: createDateForStocksForThisDay(3),
 				priceBefore: 52.68,
 				priceAfter: 52.63,
 				changes: -0.05,

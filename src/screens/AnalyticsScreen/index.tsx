@@ -107,15 +107,15 @@ const AnalyticsScreen = () => {
 		);
 	};
 	// //Run this if you want upload stocks to the DB
-	// useEffect(() => {
-	// 	const handleUploadStockToTheDB = async () => {
-	// 		const response = await handleUploadStocks();
+	useEffect(() => {
+		const handleUploadStockToTheDB = async () => {
+			const response = await handleUploadStocks();
 
-	// 		console.log(response);
-	// 	};
+			console.log(response);
+		};
 
-	// 	handleUploadStockToTheDB();
-	// }, []);
+		handleUploadStockToTheDB();
+	}, []);
 
 	const handleNavigateToBackScreen = () => {
 		navigation.goBack();
