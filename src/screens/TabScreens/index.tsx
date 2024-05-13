@@ -8,6 +8,7 @@ import React from 'react';
 import { View } from 'react-native';
 import AnalyticsStackScreen from '@screens/AnalyticsStackScreen';
 import HomeScreen from '@screens/HomeScreen';
+import PortfolioScreen from '@screens/PortfolioScreen';
 import inlineStyle from './styles';
 import { TabScreensParamList } from './types';
 
@@ -80,7 +81,7 @@ export default function TabScreens() {
 					};
 				}}
 				name='PortfolioScreen'
-				component={() => <View></View>}
+				component={PortfolioScreen}
 			/>
 			<Tab.Screen
 				options={({ route }) => {
