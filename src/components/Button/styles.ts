@@ -8,8 +8,8 @@ const PaintedButton = styled.TouchableHighlight<PaintedButtonProps>`
 	align-items: center;
 	justify-content: center;
 	width: ${({ width }) => {
-		return width || 0;
-	}}px;
+		return typeof width === 'string' ? `${width}%` : `${width || 0}px`;
+	}};
 	height: ${({ height }) => {
 		return height || 0;
 	}}px;

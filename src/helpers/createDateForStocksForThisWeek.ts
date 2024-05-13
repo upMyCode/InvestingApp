@@ -6,10 +6,10 @@ export const createDateForStocksForThisWeek = (day: WeekDays) => {
 	let delta = 0;
 	const currentDay = weekDays[date.getDate() + 1];
 	const currentDayPos = weekDays.indexOf(currentDay);
-	const dayPos = weekDays.indexOf(day);
+	const dayPos = 7 - (1 + weekDays.indexOf(day));
 
-	delta = dayPos - currentDayPos;
-	date.setDate(date.getDate() + delta);
+	delta = dayPos;
+	date.setDate(date.getDate() - delta);
 
-	return date;
+	return date.toString();
 };

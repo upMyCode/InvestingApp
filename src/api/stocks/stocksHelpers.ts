@@ -24,6 +24,8 @@ export const handleUploadStocks = async () => {
 	try {
 		const authReference = firebase.app().database('https://investingapp-55c90-default-rtdb.firebaseio.com').ref(`/stocks`);
 
+		console.log(STOCKS[0].modifiedStocks);
+
 		if (authReference) {
 			await authReference.set(STOCKS);
 

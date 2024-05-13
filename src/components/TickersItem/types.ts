@@ -3,4 +3,9 @@ export interface TickersItemProps {
 	symbol: string;
 	image: string;
 	price: number;
+	isSelected?: boolean;
+}
+
+export interface WrapperProps {
+	isSelected?: boolean;
 }

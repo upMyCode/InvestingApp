@@ -1,7 +1,7 @@
 import { ReactElement, ReactNode } from 'react';
 
 export interface ButtonProps {
-	width?: number;
+	width?: number | string;
 	height?: number;
 	bgColor?: string;
 	bRadius?: number;
@@ -15,7 +15,7 @@ export interface ButtonProps {
 }
 
 export interface PaintedButtonProps {
-	width?: number;
+	width?: number | string;
 	height?: number;
 	bgColor?: string;
 	bRadius?: number;

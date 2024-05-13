@@ -1,5 +1,5 @@
-interface ModifiedStocks {
-	modifiedDate: Date;
+export interface ModifiedStocks {
+	modifiedDate: Date | string;
 	priceBefore: number;
 	priceAfter: number;
 	changes: number;

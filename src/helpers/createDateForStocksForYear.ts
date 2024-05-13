@@ -23,5 +23,5 @@ export const createDateForStocksForYear = (month: Months) => {
 	delta = monthPos - currentMonthPos;
 	date.setMonth(date.getMonth() + delta);
 
-	return date;
+	return date.toString();
 };
