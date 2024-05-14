@@ -15,7 +15,7 @@ export const TickersHeader = styled.View`
 	width: 100%;
 	flex-direction: row;
 	justify-content: space-between;
-	height: 48px;
+	height: 34px;
 	margin: 8px 0 19px 0;
 `;
 

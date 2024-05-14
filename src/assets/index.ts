@@ -12,6 +12,8 @@ import AdminLogo from './img/AdminLogo.png';
 import CategoryLogo from './img/CategoryLogo.png';
 import SearchLogo from './img/SearchLogo.png';
 import BlackSearchLogo from './img/BlackSearchLogo.png';
+import CrossLogo from './img/CrossLogo.png';
+import ArrowDownLogo from './img/ArrowDownLogo.png';
 
 export {
 	StartScreenLogo,
@@ -28,4 +30,6 @@ export {
 	CategoryLogo,
 	SearchLogo,
 	BlackSearchLogo,
+	CrossLogo,
+	ArrowDownLogo,
 };

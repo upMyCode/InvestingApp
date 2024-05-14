@@ -31,11 +31,13 @@ export const RenderItemContainerText = styled.Text`
 
 export const styles = StyleSheet.create({
 	dropdownMenuStyle: {
+		flex: 1,
 		top: '50%',
 		left: '25%',
 		backgroundColor: '#FFFFFF',
 		borderRadius: 10,
 		width: 200,
+		height: 220,
 	},
 	dropdownSearchInputStyle: {
 		borderRadius: 8,

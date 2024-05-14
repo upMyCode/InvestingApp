@@ -1,10 +1,12 @@
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import { firebase } from '@react-native-firebase/database';
-
-interface USER {
+import type { Stocks } from '@constants/stocks/types';
+export interface USER {
 	id: string;
 	username: string;
 	useremail: string;
+	userbalance: number;
+	userstocks: Stocks[] | null;
 }
 interface FirebaseErrorAPI {
 	code: string;
@@ -41,7 +43,7 @@ export const handleSignUpAPI = async (email: string, password: string, name: str
 					username: name,
 					useremail: email,
 					userbalance: 0,
-					userstocks: [],
+					userstocks: null,
 				});
 
 				return isUserCreated.user;
@@ -74,6 +76,25 @@ export const handleSignInAPI = async (email: string, password: string): Promise<
 			}
 		}
 		return null;
+	} catch (error: unknown) {
+		if (isError(error)) {
+			return error.code;
+		}
+		return '';
+	}
+};
+
+export const handleUpdateUserDataInAPI = async (uid: string, balance: number): Promise<boolean | null | string> => {
+	try {
+		const authReference = firebase
+			.app()
+			.database('https://investingapp-55c90-default-rtdb.firebaseio.com')
+			.ref(`/users/${uid}`)
+			.update({
+				userbalance: balance,
+			});
+
+		return true;
 	} catch (error: unknown) {
 		if (isError(error)) {
 			return error.code;

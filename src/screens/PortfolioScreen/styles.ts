@@ -7,7 +7,7 @@ export const Wrapper = styled.View`
 `;
 
 export const Content = styled.View`
-	width: 90%;
+	width: 100%;
 	display: flex;
 	align-items: center;
 	margin-top: 64px;
@@ -16,4 +16,8 @@ export const Content = styled.View`
 export const ContentTitle = styled.Text`
 	font-family: 'Inter-Medium';
 	font-size: 24px;
+`;
+
+export const StockListWrapper = styled.View`
+	margin-top: 25px;
 `;
