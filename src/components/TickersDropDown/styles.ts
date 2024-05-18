@@ -1,7 +1,6 @@
 import styled from 'styled-components/native';
 import { StyleSheet, Dimensions } from 'react-native';
-
-const screenWidth = Dimensions.get('screen').width - Dimensions.get('screen').width * 0.18;
+import { TickersDropDownViewContainerProps } from './types';
 
 export const TickersDropDownView = styled.View`
 	display: flex;
@@ -12,10 +11,10 @@ export const TickersDropDownView = styled.View`
 	background-color: #9d7830;
 	border-radius: 6px;
 `;
-export const TickersDropDownViewContainer = styled.View`
+export const TickersDropDownViewContainer = styled.View<TickersDropDownViewContainerProps>`
 	position: relative;
 	top: 18px;
-	left: ${screenWidth}px;
+	left: ${({ tickersListSearchButtonPosition }) => tickersListSearchButtonPosition}px;
 `;
 export const ButtonContainer = styled.View`
 	display: flex;

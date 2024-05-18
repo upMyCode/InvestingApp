@@ -12,7 +12,7 @@ export const Wrapper = styled.View`
 export const Content = styled.View<ContentProps>`
 	display: flex;
 	background-color: #2e2e2e;
-	border-radius: 10px;
+	border-radius: 15px;
 	width: ${({ width }) => {
 		return width;
 	}}px;

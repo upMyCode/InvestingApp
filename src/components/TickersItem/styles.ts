@@ -11,8 +11,8 @@ export const Wrapper = styled.View<WrapperProps>`
 	background-color: ${({ isSelected }) => (isSelected ? 'transparent' : '#8f723a')};
 	border-radius: 10px;
 	margin: 5px 0;
-	padding: 5px 53px 5px 20px;
-	height: 54px;
+	padding: 5px 13px 5px 20px;
+	height: ${({ tickersItemHeight }) => (tickersItemHeight ? tickersItemHeight : '54')}px;
 `;
 
 export const TickerInfo = styled.View`
@@ -59,5 +59,38 @@ export const PriceText = styled.Text`
 `;
 
 export const PriceWrapper = styled.View`
-	max-width: 100px;
+	display: flex;
+	height: 40px;
+	align-items: flex-end;
+	justify-content: flex-end;
+`;
+
+export const ValueWrapper = styled.View`
+	margin-left: 4px;
+`;
+
+export const ValueText = styled.Text`
+	font-family: 'Inter-Regular';
+	font-size: 10px;
+	color: #ffffff;
+`;
+
+export const DeltaPositive = styled.Text`
+	font-family: 'Inter-Regular';
+	font-size: 12px;
+	line-height: 21px;
+	color: #1bff07;
+`;
+
+export const DeltaNegative = styled.Text`
+	font-family: 'Inter-Regular';
+	font-size: 12px;
+	line-height: 21px;
+	color: #ff0b0b;
+`;
+
+export const DeltaWrapper = styled.View`
+	display: flex;
+	height: 40px;
+	justify-content: center;
 `;

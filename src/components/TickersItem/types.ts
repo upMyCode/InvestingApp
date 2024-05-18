@@ -4,8 +4,12 @@ export interface TickersItemProps {
 	image: string;
 	price: number;
 	isSelected?: boolean;
+	tickersItemHeight?: number;
+	value: number;
+	changes: number;
 }
 
 export interface WrapperProps {
 	isSelected?: boolean;
+	tickersItemHeight?: number;
 }

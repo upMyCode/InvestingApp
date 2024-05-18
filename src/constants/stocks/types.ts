@@ -29,5 +29,7 @@ export interface Stocks {
 	type: string;
 	website?: null | string;
 	changes: number;
+	broker: string;
+	value: number;
 	modifiedStocks: ModifiedStocks[];
 }

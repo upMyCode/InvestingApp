@@ -16,6 +16,7 @@ import {
 	BlackSearchLogo,
 	CrossLogo,
 	ArrowDownLogo,
+	ArrowTopLogo,
 } from '@assets/index';
 
 export const StartScreenLogoIMG = Image.resolveAssetSource(StartScreenLogo).uri;
@@ -34,3 +35,4 @@ export const SearchLogoIMG = Image.resolveAssetSource(SearchLogo).uri;
 export const BlackSearchLogoIMG = Image.resolveAssetSource(BlackSearchLogo).uri;
 export const CrossLogoIMG = Image.resolveAssetSource(CrossLogo).uri;
 export const ArrowDownLogoIMG = Image.resolveAssetSource(ArrowDownLogo).uri;
+export const ArrowTopLogoIMG = Image.resolveAssetSource(ArrowTopLogo).uri;

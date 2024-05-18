@@ -1,5 +1,14 @@
 import { Image } from 'react-native';
-import { Wrapper, Content, ContentTitle, StockListWrapper } from './styles';
+import {
+	Wrapper,
+	Content,
+	ContentTitle,
+	StockListWrapper,
+	UserPortfolioWrapper,
+	UserPortfolioButtonWrapper,
+	ButtonText,
+	ButtonWrapper,
+} from './styles';
 import Header from '@components/Header';
 import { useNavigation } from '@react-navigation/core';
 import PortfolioCard from '@components/PortfolioCard';
@@ -12,6 +21,7 @@ import TickersList from '@components/TickersList';
 import { useState, useEffect } from 'react';
 import { Dimensions } from 'react-native';
 import { handleGetAllStocks } from '@api/stocks/stocksHelpers';
+import { ArrowTopLogoIMG } from '@helpers/imagesResolve';
 
 import type { StackNavigationProp } from '@react-navigation/stack';
 import type { TabScreensParamList } from '@screens/TabScreens/types';
@@ -33,6 +43,7 @@ const PortfolioScreen = () => {
 	const screenWidth = Dimensions.get('screen').width;
 	const screenHeight = Dimensions.get('screen').width;
 	const [isModalVisible, setModalVisible] = useState<boolean>(false);
+	const [modalName, setModalName] = useState<string>('top up');
 	const [stocks, setStocks] = useState<Stocks[] | null>([]);
 	const [error, setError] = useState<string>('');
 
@@ -50,6 +61,12 @@ const PortfolioScreen = () => {
 
 	const handleTopUp = () => {
 		setModalVisible(true);
+		setModalName('top up');
+	};
+
+	const handleOpenUserPortfolio = () => {
+		setModalVisible(true);
+		setModalName('portfolio');
 	};
 
 	const handleCloseModal = () => {
@@ -80,11 +97,20 @@ const PortfolioScreen = () => {
 	}, []);
 
 	const cardHandler = typePortfolioCard === 'portfolio balance' ? handleGoToUserBalanceView : handleTopUp;
+	const tickersListSearchButtonPositionScreen = screenWidth - screenWidth * 0.25;
+	const tickersListSearchButtonPositionModal = screenWidth - screenWidth * 0.3;
 
 	return (
 		<Wrapper>
 			<Header title='Portfolio' handlerForReturnToPage={handleNavigateToBackScreen} />
-			<PortfolioCard typePortfolioCard={typePortfolioCard} balance={balance} cardHandler={cardHandler} />
+			{(modalName === 'top up' || !isModalVisible) && (
+				<PortfolioCard
+					typePortfolioCard={typePortfolioCard}
+					balance={balance}
+					cardHandler={cardHandler}
+					handleOpenUserPortfolio={handleOpenUserPortfolio}
+				/>
+			)}
 			<Content>
 				<ContentTitle>{typePortfolioCard === 'user balance' ? 'Create your portfolio' : 'Choose your stock'}</ContentTitle>
 				{typePortfolioCard === 'user balance' ? (
@@ -94,6 +120,7 @@ const PortfolioScreen = () => {
 				) : (
 					<StockListWrapper>
 						<TickersList
+							tickersListSearchButtonPosition={tickersListSearchButtonPositionScreen}
 							renderData={stocks}
 							searchCategories={sortCategories}
 							maxHeightForList={screenHeight >= 844 ? 360 : 250}
@@ -102,9 +129,42 @@ const PortfolioScreen = () => {
 					</StockListWrapper>
 				)}
 			</Content>
-			{isModalVisible && (
+			{isModalVisible && modalName === 'top up' && (
 				<ModalContainer title='Top Up' width={313} handleModalOnClose={handleCloseModal} fSize={16} modalVisible={isModalVisible}>
 					<TopUpForm />
+				</ModalContainer>
+			)}
+			{isModalVisible && modalName === 'portfolio' && (
+				<ModalContainer
+					title='Portfolio'
+					width={363}
+					handleModalOnClose={handleCloseModal}
+					fSize={17}
+					modalVisible={isModalVisible}
+				>
+					<UserPortfolioWrapper>
+						<UserPortfolioButtonWrapper>
+							<Button width={92} height={31} bgColor='#C44E0C' onPress={handleGoToPortfolioBalanceView} bRadius={10}>
+								<ButtonText>Add stock</ButtonText>
+							</Button>
+						</UserPortfolioButtonWrapper>
+						<StockListWrapper>
+							<TickersList
+								isModal
+								tickersListSearchButtonPosition={tickersListSearchButtonPositionModal}
+								renderData={null}
+								searchCategories={sortCategories}
+								tickersItemHeight={20}
+								maxHeightForList={screenHeight >= 844 ? 360 : 450}
+								handleSetSearchCategory={handleSetSearchCategory}
+							/>
+						</StockListWrapper>
+						<ButtonWrapper>
+							<Button width={50} height={50} bRadius={50} bgColor='#C44E0C' onPress={handleCloseModal}>
+								<Image source={{ uri: ArrowTopLogoIMG }} width={24} height={24} />
+							</Button>
+						</ButtonWrapper>
+					</UserPortfolioWrapper>
 				</ModalContainer>
 			)}
 		</Wrapper>

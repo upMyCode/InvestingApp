@@ -7,7 +7,7 @@ import React from 'react';
 
 import type { TickersDropDownProps } from './types';
 
-const TickersDropDown = ({ handleSetSearchCategory }: TickersDropDownProps) => {
+const TickersDropDown = ({ handleSetSearchCategory, tickersListSearchButtonPosition }: TickersDropDownProps) => {
 	return (
 		<ButtonContainer>
 			<SelectDropdown
@@ -19,7 +19,7 @@ const TickersDropDown = ({ handleSetSearchCategory }: TickersDropDownProps) => {
 					return (
 						<View>
 							{(!selectedItem || selectedItem) && (
-								<TickersDropDownViewContainer>
+								<TickersDropDownViewContainer tickersListSearchButtonPosition={tickersListSearchButtonPosition}>
 									<TickersDropDownView>
 										<Image source={{ uri: SearchLogoIMG }} width={14.5} height={14.5} />
 									</TickersDropDownView>

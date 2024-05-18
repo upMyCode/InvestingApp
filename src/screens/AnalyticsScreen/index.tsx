@@ -31,6 +31,7 @@ const AnalyticsScreen = () => {
 	const [error, setError] = useState<string>('');
 	const screenWidth = Dimensions.get('screen').width;
 	const screenHeight = Dimensions.get('screen').width;
+	const tickersListSearchButtonPosition = screenWidth - screenWidth * 0.18;
 
 	const handleSetSelectedItem = (item: Stocks) => {
 		setSelectedItem(item);
@@ -160,6 +161,7 @@ const AnalyticsScreen = () => {
 				modifiedStocks={selectedItem?.modifiedStocks}
 			/>
 			<TickersList
+				tickersListSearchButtonPosition={tickersListSearchButtonPosition}
 				selectedItem={selectedItem}
 				isChooseableItems
 				handleSelectItem={handleSetSelectedItem}

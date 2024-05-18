@@ -1,6 +1,7 @@
 import { FlatList, Dimensions } from 'react-native';
 import { useEffect, useState } from 'react';
 import { handleUploadStocks, handleGetAllStocks } from '@api/stocks/stocksHelpers';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/core';
 import HomeHeader from '@components/HomeHeader';
 import { useGetButtonsForSearchStocksType } from '@hooks/useGetButtonsForSearchStocksType/useGetButtonsForSearchStocksType';
@@ -51,6 +52,7 @@ const HomeScreen = () => {
 	];
 	const screenWidth = Dimensions.get('screen').width;
 	const screenHeight = Dimensions.get('screen').width;
+	const tickersListSearchButtonPosition = screenWidth - screenWidth * 0.18;
 
 	const handleChooseStocksCategory = () => {
 		setSortCategories((prev) => {
@@ -100,6 +102,17 @@ const HomeScreen = () => {
 		handleBoundsCategory,
 		handleAllCategory
 	);
+
+	const clearAppData = async function () {
+		try {
+			const keys = await AsyncStorage.getAllKeys();
+			await AsyncStorage.multiRemove(keys);
+		} catch (error) {
+			console.error('Error clearing app data.');
+		}
+	};
+
+	// clearAppData();
 
 	const renderSearchTypeButton = ({ item }: ListRenderItemInfo<RenderSearchTypeButtonItem>) => {
 		const itemType = item.type.toLowerCase().split('').includes('s')
@@ -182,6 +195,7 @@ const HomeScreen = () => {
 				/>
 			</MonthlyTickersInfoWrapper>
 			<TickersList
+				tickersListSearchButtonPosition={tickersListSearchButtonPosition}
 				renderData={stocks}
 				searchCategories={sortCategories}
 				maxHeightForList={screenHeight >= 844 ? 380 : 250}

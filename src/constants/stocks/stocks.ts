@@ -7,6 +7,8 @@ import type { Stocks } from './types';
 export const STOCKS: Stocks[] = [
 	{
 		symbol: 'NGVT',
+		broker: 'Apha group',
+		value: 200,
 		price: 54.62,
 		beta: 1.852,
 		volAvg: 230870,
@@ -126,6 +128,8 @@ export const STOCKS: Stocks[] = [
 		symbol: 'KRE',
 		price: 49.71,
 		beta: 0.92,
+		broker: 'Apha group',
+		value: 100,
 		volAvg: 14127829,
 		mktCap: 3036307529,
 		lastDiv: 1.58458,
@@ -243,6 +247,8 @@ export const STOCKS: Stocks[] = [
 	{
 		symbol: 'GIS',
 		price: 69.79,
+		broker: 'Apha group',
+		value: 150,
 		beta: 0.142,
 		volAvg: 4240206,
 		mktCap: 39399874710,
@@ -361,6 +367,8 @@ export const STOCKS: Stocks[] = [
 	{
 		symbol: 'AWK',
 		price: 127.46,
+		broker: 'Apha group',
+		value: 120,
 		beta: 0.624,
 		volAvg: 1639401,
 		mktCap: 24832012120,
@@ -478,6 +486,8 @@ export const STOCKS: Stocks[] = [
 	},
 	{
 		symbol: 'ASTE',
+		broker: 'Apha group',
+		value: 1150,
 		price: 32.56,
 		beta: 1.411,
 		volAvg: 144290,
@@ -599,6 +609,8 @@ export const STOCKS: Stocks[] = [
 		price: 12.45,
 		beta: 1.425,
 		volAvg: 651129,
+		broker: 'Apha group',
+		value: 156,
 		mktCap: 502556700,
 		lastDiv: 0,
 		range: '1.46-12.8',
@@ -717,6 +729,8 @@ export const STOCKS: Stocks[] = [
 		price: 15.9649,
 		beta: 2.414,
 		volAvg: 3870072,
+		broker: 'SBER group',
+		value: 150,
 		mktCap: 2842997462,
 		lastDiv: 0,
 		range: '12.68-26.529',
@@ -832,6 +846,8 @@ export const STOCKS: Stocks[] = [
 	},
 	{
 		symbol: 'LOW',
+		broker: 'SBER group',
+		value: 950,
 		price: 232.91,
 		beta: 1.124,
 		volAvg: 2402845,
@@ -950,6 +966,8 @@ export const STOCKS: Stocks[] = [
 	},
 	{
 		symbol: 'VEA',
+		broker: 'SBER group',
+		value: 155,
 		price: 49.4242,
 		beta: 1.08,
 		volAvg: 11692432,
@@ -1068,6 +1086,8 @@ export const STOCKS: Stocks[] = [
 	},
 	{
 		symbol: 'BKR',
+		broker: 'SBER group',
+		value: 3450,
 		price: 31.82,
 		beta: 1.445,
 		volAvg: 7886916,
@@ -1186,6 +1206,8 @@ export const STOCKS: Stocks[] = [
 	},
 	{
 		symbol: 'PENN',
+		broker: 'SBER group',
+		value: 750,
 		price: 15.3427,
 		beta: 2.06,
 		volAvg: 6095680,
@@ -1304,6 +1326,8 @@ export const STOCKS: Stocks[] = [
 	},
 	{
 		symbol: 'KC',
+		broker: 'SBER group',
+		value: 69,
 		price: 3.4254,
 		beta: 2.129,
 		volAvg: 1268069,
@@ -1422,6 +1446,8 @@ export const STOCKS: Stocks[] = [
 	},
 	{
 		symbol: 'ZURA',
+		broker: 'SBER group',
+		value: 157,
 		price: 4.46,
 		beta: 0.54,
 		volAvg: 311519,
@@ -1540,6 +1566,8 @@ export const STOCKS: Stocks[] = [
 	},
 	{
 		symbol: 'PMT',
+		broker: 'SBER group',
+		value: 350,
 		price: 14.635,
 		beta: 1.432,
 		volAvg: 668651,
@@ -1659,6 +1687,8 @@ export const STOCKS: Stocks[] = [
 	{
 		symbol: 'VGT',
 		price: 509.0687,
+		broker: 'SBER group',
+		value: 750,
 		beta: 1.24,
 		volAvg: 455920,
 		mktCap: 80832787116,
@@ -1777,6 +1807,8 @@ export const STOCKS: Stocks[] = [
 	{
 		symbol: 'IWM',
 		price: 201.81,
+		broker: 'SBER group',
+		value: 8950,
 		beta: 1.04,
 		volAvg: 35473159,
 		mktCap: 56718695051,
@@ -1894,6 +1926,8 @@ export const STOCKS: Stocks[] = [
 	},
 	{
 		symbol: 'IYW',
+		broker: 'SBER group',
+		value: 110,
 		price: 132,
 		beta: 1.26,
 		volAvg: 905712,
@@ -2012,6 +2046,8 @@ export const STOCKS: Stocks[] = [
 	},
 	{
 		symbol: 'SOXX',
+		broker: 'SBER group',
+		value: 150,
 		price: 216.19,
 		beta: 1.63,
 		volAvg: 4122927,
@@ -2130,6 +2166,8 @@ export const STOCKS: Stocks[] = [
 	},
 	{
 		symbol: 'SQQQ',
+		broker: 'SBER group',
+		value: 150,
 		price: 11.1091,
 		beta: -3.52,
 		volAvg: 140557946,
@@ -2248,6 +2286,8 @@ export const STOCKS: Stocks[] = [
 	},
 	{
 		symbol: 'AAPL',
+		broker: 'SBER group',
+		value: 150,
 		price: 184.8299,
 		beta: 1.276,
 		volAvg: 61548179,
@@ -2366,6 +2406,8 @@ export const STOCKS: Stocks[] = [
 	},
 	{
 		symbol: 'AMAL',
+		broker: 'SBER group',
+		value: 150,
 		price: 25.49,
 		beta: 0.931,
 		volAvg: 153553,
