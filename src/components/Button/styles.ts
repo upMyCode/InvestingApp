@@ -17,8 +17,8 @@ const PaintedButton = styled.TouchableHighlight<PaintedButtonProps>`
 		return bgColor;
 	}};
 	border-radius: ${({ bRadius }) => {
-		return bRadius || 0;
-	}}px;
+		return bRadius ? (typeof bRadius === 'number' ? `${bRadius}px` : bRadius) : `${0}px`;
+	}};
 	border: ${({ bColor }) => {
 		return bColor || 'none';
 	}};

@@ -22,6 +22,7 @@ import { useState, useEffect } from 'react';
 import { Dimensions } from 'react-native';
 import { handleGetAllStocks } from '@api/stocks/stocksHelpers';
 import { ArrowTopLogoIMG } from '@helpers/imagesResolve';
+import AddTransactionForm from '@forms/AddTransactionForm';
 
 import type { StackNavigationProp } from '@react-navigation/stack';
 import type { TabScreensParamList } from '@screens/TabScreens/types';
@@ -67,6 +68,11 @@ const PortfolioScreen = () => {
 	const handleOpenUserPortfolio = () => {
 		setModalVisible(true);
 		setModalName('portfolio');
+	};
+
+	const handleOpenAddToPortfolioStock = () => {
+		setModalVisible(true);
+		setModalName('add stock');
 	};
 
 	const handleCloseModal = () => {
@@ -144,7 +150,7 @@ const PortfolioScreen = () => {
 				>
 					<UserPortfolioWrapper>
 						<UserPortfolioButtonWrapper>
-							<Button width={92} height={31} bgColor='#C44E0C' onPress={handleGoToPortfolioBalanceView} bRadius={10}>
+							<Button width={92} height={31} bgColor='#C44E0C' onPress={handleOpenAddToPortfolioStock} bRadius={10}>
 								<ButtonText>Add stock</ButtonText>
 							</Button>
 						</UserPortfolioButtonWrapper>
@@ -165,6 +171,17 @@ const PortfolioScreen = () => {
 							</Button>
 						</ButtonWrapper>
 					</UserPortfolioWrapper>
+				</ModalContainer>
+			)}
+			{isModalVisible && modalName === 'add stock' && (
+				<ModalContainer
+					title='Add New Transaction'
+					width={313}
+					handleModalOnClose={handleCloseModal}
+					fSize={16}
+					modalVisible={isModalVisible}
+				>
+					<AddTransactionForm stocks={stocks} />
 				</ModalContainer>
 			)}
 		</Wrapper>

@@ -15,6 +15,8 @@ import BlackSearchLogo from './img/BlackSearchLogo.png';
 import CrossLogo from './img/CrossLogo.png';
 import ArrowDownLogo from './img/ArrowDownLogo.png';
 import ArrowTopLogo from './img/ArrowTopLogo.png';
+import ChevronDownLogo from './img/ChevronDownLogo.png';
+import ChevronUpLogo from './img/ChevronUpLogo.png';
 
 export {
 	StartScreenLogo,
@@ -34,4 +36,6 @@ export {
 	CrossLogo,
 	ArrowDownLogo,
 	ArrowTopLogo,
+	ChevronDownLogo,
+	ChevronUpLogo,
 };
