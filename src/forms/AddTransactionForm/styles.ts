@@ -55,6 +55,7 @@ export const TransactionTotalView = styled.View`
 
 export const TransactionInfoView = styled.View`
 	width: 50%;
+	margin-left: 5px;
 `;
 
 export const TransactionTotalText = styled.Text`
@@ -80,3 +81,12 @@ export const styles = StyleSheet.create({
 		elevation: 3,
 	},
 });
+
+export const TransactionErrorText = styled.Text`
+	margin-top: 2px;
+	font-family: 'Inter-Medium';
+	color: #ed051c;
+	line-height: 21px;
+	font-size: 14px;
+	max-width: 210px;
+`;

@@ -18,6 +18,7 @@ export interface ApplyTransactionInfo {
 	transactionDate: Date;
 	result: number;
 	operationType: string;
+	id: string;
 }
 
 export interface AddTransactionFormProps {

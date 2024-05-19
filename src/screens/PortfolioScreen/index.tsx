@@ -23,6 +23,7 @@ import { Dimensions } from 'react-native';
 import { handleGetAllStocks } from '@api/stocks/stocksHelpers';
 import { ArrowTopLogoIMG } from '@helpers/imagesResolve';
 import AddTransactionForm from '@forms/AddTransactionForm';
+import { handleGetUserStocksDataInAPI } from '@api/auth/loginAPI';
 
 import type { StackNavigationProp } from '@react-navigation/stack';
 import type { TabScreensParamList } from '@screens/TabScreens/types';
@@ -37,6 +38,7 @@ const PortfolioScreen = () => {
 	const [typePortfolioCard, setTypePortfolioCard] = useState<string>('user balance');
 	const navigation = useNavigation<StackNavigationProp<TabScreensParamList>>();
 	const balance = useAppSelector((store) => store.createUserSlice.user.balance);
+	const user = useAppSelector((store) => store.createUserSlice.user);
 	const [sortCategories, setSortCategories] = useState<SearchCategories>({
 		searchType: 'All',
 		searchCategory: 'All',
@@ -46,6 +48,7 @@ const PortfolioScreen = () => {
 	const [isModalVisible, setModalVisible] = useState<boolean>(false);
 	const [modalName, setModalName] = useState<string>('top up');
 	const [stocks, setStocks] = useState<Stocks[] | null>([]);
+	const [userPortfolioStocks, setUserPortfolioStocks] = useState<Stocks[] | null>([]);
 	const [error, setError] = useState<string>('');
 
 	const handleNavigateToBackScreen = () => {
@@ -100,7 +103,25 @@ const PortfolioScreen = () => {
 		};
 
 		handleGetStocksDataFromDB();
-	}, []);
+	}, [isModalVisible]);
+
+	useEffect(() => {
+		const handleGetStocksDataFromDB = async () => {
+			const response = await handleGetUserStocksDataInAPI(user?.id);
+
+			if (!response) {
+				setUserPortfolioStocks(null);
+			}
+
+			if (response && typeof response === 'string') {
+				setError(response);
+			} else if (response && typeof response !== 'string') {
+				setUserPortfolioStocks(response);
+			}
+		};
+
+		handleGetStocksDataFromDB();
+	}, [isModalVisible]);
 
 	const cardHandler = typePortfolioCard === 'portfolio balance' ? handleGoToUserBalanceView : handleTopUp;
 	const tickersListSearchButtonPositionScreen = screenWidth - screenWidth * 0.25;
@@ -158,7 +179,7 @@ const PortfolioScreen = () => {
 							<TickersList
 								isModal
 								tickersListSearchButtonPosition={tickersListSearchButtonPositionModal}
-								renderData={null}
+								renderData={userPortfolioStocks}
 								searchCategories={sortCategories}
 								tickersItemHeight={20}
 								maxHeightForList={screenHeight >= 844 ? 360 : 450}

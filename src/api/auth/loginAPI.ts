@@ -1,6 +1,7 @@
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import { firebase } from '@react-native-firebase/database';
 import type { Stocks } from '@constants/stocks/types';
+import type { ApplyTransactionInfo } from '@forms/AddTransactionForm/types';
 export interface USER {
 	id: string;
 	username: string;
@@ -95,6 +96,153 @@ export const handleUpdateUserDataInAPI = async (uid: string, balance: number): P
 			});
 
 		return true;
+	} catch (error: unknown) {
+		if (isError(error)) {
+			return error.code;
+		}
+		return '';
+	}
+};
+
+export const handleUpdateUserStocksDataInAPI = async (uid: string, stock: Stocks, type: string): Promise<boolean | null | string> => {
+	try {
+		if (type === 'Buy') {
+			const authReference = firebase.app().database('https://investingapp-55c90-default-rtdb.firebaseio.com').ref(`/users/${uid}`);
+
+			const userDataSnapshot = await authReference.once('value');
+			const userData = userDataSnapshot.val();
+
+			let stocks = [];
+
+			if (userData.userstocks === 'empty' || !userData.userstocks) {
+				console.log(1111111);
+				stocks = [stock];
+			}
+
+			if (userData.userstocks.length > 0) {
+				const findStock = userData.userstocks.find((item) => item.symbol === stock.symbol);
+
+				if (findStock) {
+					stocks = userData.userstocks.map((item) => {
+						if (item.symbol === stock.symbol) {
+							return {
+								...item,
+								value: item.value + stock.value,
+							};
+						}
+
+						return item;
+					});
+				} else {
+					stocks = [...userData.userstocks, stock];
+				}
+			}
+
+			authReference.update({
+				userstocks: stocks,
+			});
+
+			const authReferenceToStocks = firebase.app().database('https://investingapp-55c90-default-rtdb.firebaseio.com').ref(`/stocks`);
+
+			const userDataStocksSnapshot = await authReferenceToStocks.once('value');
+			const userDataStocks = userDataStocksSnapshot.val();
+			const choosedStock = userDataStocks.find((data) => data.symbol === stock.symbol);
+
+			choosedStock.value = choosedStock.value - stock.value;
+
+			if (choosedStock.value === 0) {
+				const newStocksData = userDataStocks.filter((data) => data.symbol !== stock.symbol);
+
+				authReferenceToStocks.set(newStocksData);
+			} else {
+				const newStocksData = userDataStocks.map((data) => {
+					if (data.symbol === stock.symbol) {
+						return choosedStock;
+					} else {
+						return data;
+					}
+				});
+
+				authReferenceToStocks.set(newStocksData);
+			}
+		}
+
+		if (type === 'Sell') {
+			const authReference = firebase.app().database('https://investingapp-55c90-default-rtdb.firebaseio.com').ref(`/users/${uid}`);
+			const authReferenceToStocks = firebase.app().database('https://investingapp-55c90-default-rtdb.firebaseio.com').ref(`/stocks`);
+			const userDataSnapshot = await authReference.once('value');
+			const userData = userDataSnapshot.val();
+			const userDataStocksSnapshot = await authReferenceToStocks.once('value');
+			const userDataStocks = userDataStocksSnapshot.val();
+			const findStock = userDataStocks.find((item) => stock.symbol === item.symbol);
+
+			if (userData) {
+				if (userData.userstocks || userData.userstocks !== 'empty') {
+					const currentUserStock = userData.userstocks.find((item) => item.symbol === stock.symbol);
+
+					if (currentUserStock) {
+						currentUserStock.value = currentUserStock.value - stock.value;
+
+						if (currentUserStock.value === 0) {
+							const newStockList = userData.userstocks.filter((item) => item.symbol !== stock.symbol);
+
+							authReference.update({
+								userstocks: newStockList,
+							});
+						} else {
+							authReference.update({
+								userstocks: currentUserStock,
+							});
+						}
+					} else {
+						return 'Stock is not found';
+					}
+				}
+			}
+
+			if (findStock) {
+				const newStocksList = userDataStocks.map((item) => {
+					if (item.symbol === stock.symbol) {
+						return {
+							...item,
+							value: item.value + stock.value,
+						};
+					}
+
+					return item;
+				});
+				authReferenceToStocks.set(newStocksList);
+			} else {
+				const newStocksList = userDataStocks.concat(stock);
+
+				authReferenceToStocks.set(newStocksList);
+			}
+		}
+
+		return true;
+	} catch (error: unknown) {
+		if (isError(error)) {
+			return error.code;
+		}
+		return 'Err';
+	}
+};
+
+export const handleGetUserStocksDataInAPI = async (uid: string): Promise<null | string> => {
+	try {
+		const authReferenceToStocks = firebase
+			.app()
+			.database('https://investingapp-55c90-default-rtdb.firebaseio.com')
+			.ref(`/users/${uid}`);
+
+		const userDataStocksSnapshot = await authReferenceToStocks.once('value');
+		const userDataStocks = userDataStocksSnapshot.val();
+
+		if (userDataStocks.userstocks !== 'empty' && userDataStocks.userstocks) {
+			return userDataStocks.userstocks;
+		} else {
+			return null;
+		}
 	} catch (error: unknown) {
 		if (isError(error)) {
 			return error.code;

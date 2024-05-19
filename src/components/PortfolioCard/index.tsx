@@ -28,7 +28,7 @@ const PortfolioCard = ({ typePortfolioCard, balance = 0, cardHandler, handleOpen
 					</Button>
 				</ContentHeaderWrapper>
 				<PortfolioBalanceContainer>
-					<PortfolioBalanceText>{`$${balance}`}</PortfolioBalanceText>
+					<PortfolioBalanceText>{`$${balance.toFixed(2)}`}</PortfolioBalanceText>
 				</PortfolioBalanceContainer>
 				<PortfolioFooterContainer>
 					{typePortfolioCard === 'user balance' ? (
