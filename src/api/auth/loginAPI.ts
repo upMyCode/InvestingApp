@@ -104,6 +104,25 @@ export const handleUpdateUserDataInAPI = async (uid: string, balance: number): P
 	}
 };
 
+export const handleUpdateUserDataNameInAPI = async (uid: string, name: string): Promise<boolean | null | string> => {
+	try {
+		const authReference = firebase
+			.app()
+			.database('https://investingapp-55c90-default-rtdb.firebaseio.com')
+			.ref(`/users/${uid}`)
+			.update({
+				username: name,
+			});
+
+		return true;
+	} catch (error: unknown) {
+		if (isError(error)) {
+			return error.code;
+		}
+		return '';
+	}
+};
+
 export const handleUpdateUserStocksDataInAPI = async (uid: string, stock: Stocks, type: string): Promise<boolean | null | string> => {
 	try {
 		if (type === 'Buy') {
@@ -245,6 +264,19 @@ export const handleGetUserStocksDataInAPI = async (uid: string): Promise<null | 
 		}
 	} catch (error: unknown) {
 		if (isError(error)) {
+			return error.code;
+		}
+		return '';
+	}
+};
+
+export const handleLogoutAPI = async (): Promise<boolean | null | string> => {
+	try {
+		await auth().signOut();
+
+		return true;
+	} catch (error: unknown) {
+		if (isFirebaseError(error)) {
 			return error.code;
 		}
 		return '';

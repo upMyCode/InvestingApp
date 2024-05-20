@@ -6,12 +6,17 @@ import RegistrationScreen from '../RegistrationScreen';
 import LogInScreen from '../LogInScreen';
 import TabScreens from '../TabScreens';
 import { useAppSelector } from '@store/hooks';
+import { useEffect } from 'react';
 
 const Stack = createStackNavigator<StackScreenParamList>();
 
 export default function StackScreen() {
 	const userData = useAppSelector((store) => store.createUserSlice.user);
 	const isUserExists = !!userData;
+
+	useEffect(() => {
+		console.log('Change user navigation');
+	}, [userData]);
 
 	return (
 		<NavigationContainer>

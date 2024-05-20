@@ -9,6 +9,7 @@ import { View } from 'react-native';
 import AnalyticsStackScreen from '@screens/AnalyticsStackScreen';
 import HomeScreen from '@screens/HomeScreen';
 import PortfolioScreen from '@screens/PortfolioScreen';
+import UserProfileScreen from '@screens/UserProfileScreen';
 import inlineStyle from './styles';
 import { TabScreensParamList } from './types';
 
@@ -117,7 +118,7 @@ export default function TabScreens() {
 				}}
 				key='UserProfileScreen'
 				name='UserProfileScreen'
-				component={() => <View></View>}
+				component={UserProfileScreen}
 			/>
 		</Tab.Navigator>
 	);
