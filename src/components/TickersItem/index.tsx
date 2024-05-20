@@ -9,15 +9,22 @@ import {
 	TickersDescription,
 	PriceText,
 	PriceWrapper,
+	ValueWrapper,
+	ValueText,
+	DeltaWrapper,
+	DeltaNegative,
+	DeltaPositive,
 } from './styles';
 import { sliceDescription } from '@helpers/sliceDescription';
 
 import type { TickersItemProps } from './types';
 
-const TickersItem = ({ industry, symbol, image, price, isSelected }: TickersItemProps) => {
+const TickersItem = ({ industry, symbol, image, price, isSelected, tickersItemHeight, value, changes }: TickersItemProps) => {
 	const priceInfo = `${price}$`;
+	const stockValueInfo = `Stock value:${value}`;
+	const delta = `${changes}$`;
 	return (
-		<Wrapper isSelected={isSelected}>
+		<Wrapper isSelected={isSelected} tickersItemHeight={tickersItemHeight}>
 			<TickerInfo>
 				<TickersImageWrapper>
 					<Image source={{ uri: image }} width={24} height={24} />
@@ -27,8 +34,12 @@ const TickersItem = ({ industry, symbol, image, price, isSelected }: TickersItem
 					<TickersDescription>{sliceDescription(industry)}</TickersDescription>
 				</TickersDescriptionWrapper>
 			</TickerInfo>
+			<DeltaWrapper>{changes < 0 ? <DeltaNegative>{delta}</DeltaNegative> : <DeltaPositive>{delta}</DeltaPositive>}</DeltaWrapper>
 			<PriceWrapper>
 				<PriceText>{priceInfo}</PriceText>
+				<ValueWrapper>
+					<ValueText>{stockValueInfo}</ValueText>
+				</ValueWrapper>
 			</PriceWrapper>
 		</Wrapper>
 	);

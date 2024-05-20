@@ -62,6 +62,7 @@
     "react-native-error-boundary": "^1.2.3",
     "react-native-fast-image": "^8.6.3",
     "react-native-gesture-handler": "^2.11.0",
+    "react-native-get-random-values": "^1.11.0",
     "react-native-image-picker": "^5.6.0",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-mmkv": "^2.10.1",

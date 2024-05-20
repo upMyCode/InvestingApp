@@ -46,6 +46,8 @@ export default function LogInForm() {
 	const handleSubmitForm = async (data: FormValues) => {
 		const response = await handleSignInAPI(data.useremail, data.userpassword);
 
+		console.log(response);
+
 		if (response && typeof response === 'string') {
 			setRegistrationError(FIREBASE_ERROR[response]);
 		} else if (response && typeof response !== 'string') {
@@ -53,6 +55,8 @@ export default function LogInForm() {
 				id: response.id,
 				username: response.username,
 				useremail: response.useremail,
+				balance: response.userbalance,
+				userstocks: null,
 			};
 			dispatch(createNewUser(USER));
 		}

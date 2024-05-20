@@ -13,8 +13,15 @@ export interface TickersListProps {
 	isChooseableItems?: boolean;
 	handleSelectItem?: (item: Stocks) => void;
 	selectedItem?: Stocks | null;
+	tickersItemHeight?: number;
+	tickersListSearchButtonPosition: number;
+	isModal?: boolean;
 }
 
 export interface WrapperProps {
 	maxHeightForList: number;
+}
+
+export interface TickerDescriptionTextProps {
+	isModal?: boolean;
 }
