@@ -7,7 +7,7 @@ export interface USER {
 	username: string;
 	useremail: string;
 	userbalance: number;
-	userstocks: Stocks[] | null;
+	userstocks: Stocks[] | string;
 }
 interface FirebaseErrorAPI {
 	code: string;
@@ -133,27 +133,32 @@ export const handleUpdateUserStocksDataInAPI = async (uid: string, stock: Stocks
 
 			let stocks = [];
 
-			if (userData.userstocks === 'empty' || !userData.userstocks) {
-				console.log(1111111);
+			if (!!!userData.userstocks) {
 				stocks = [stock];
 			}
 
-			if (userData.userstocks.length > 0) {
-				const findStock = userData.userstocks.find((item) => item.symbol === stock.symbol);
+			if (userData.userstocks === 'empty') {
+				stocks = [stock];
+			}
 
-				if (findStock) {
-					stocks = userData.userstocks.map((item) => {
-						if (item.symbol === stock.symbol) {
-							return {
-								...item,
-								value: item.value + stock.value,
-							};
-						}
+			if (userData.userstocks !== 'empty' && !!userData.userstocks) {
+				if (userData.userstocks.length > 0) {
+					const findStock = userData.userstocks.find((item) => item.symbol === stock.symbol);
 
-						return item;
-					});
-				} else {
-					stocks = [...userData.userstocks, stock];
+					if (findStock) {
+						stocks = userData.userstocks.map((item) => {
+							if (item.symbol === stock.symbol) {
+								return {
+									...item,
+									value: item.value + stock.value,
+								};
+							}
+
+							return item;
+						});
+					} else {
+						stocks = [...userData.userstocks, stock];
+					}
 				}
 			}
 
@@ -196,8 +201,10 @@ export const handleUpdateUserStocksDataInAPI = async (uid: string, stock: Stocks
 			const findStock = userDataStocks.find((item) => stock.symbol === item.symbol);
 
 			if (userData) {
+				console.log(1, userData);
 				if (userData.userstocks || userData.userstocks !== 'empty') {
 					const currentUserStock = userData.userstocks.find((item) => item.symbol === stock.symbol);
+					console.log(2, currentUserStock);
 
 					if (currentUserStock) {
 						currentUserStock.value = currentUserStock.value - stock.value;
@@ -209,8 +216,9 @@ export const handleUpdateUserStocksDataInAPI = async (uid: string, stock: Stocks
 								userstocks: newStockList,
 							});
 						} else {
+							const newStockList = userData.userstocks.filter((item) => item.symbol !== stock.symbol);
 							authReference.update({
-								userstocks: currentUserStock,
+								userstocks: [...newStockList, currentUserStock],
 							});
 						}
 					} else {
@@ -277,6 +285,33 @@ export const handleLogoutAPI = async (): Promise<boolean | null | string> => {
 		return true;
 	} catch (error: unknown) {
 		if (isFirebaseError(error)) {
+			return error.code;
+		}
+		return '';
+	}
+};
+
+export const getAllUsersAPI = async (uid: string): Promise<USER[] | null | string> => {
+	try {
+		const authReference = firebase.app().database('https://investingapp-55c90-default-rtdb.firebaseio.com').ref(`/users`);
+
+		const userData = await authReference.once('value');
+		const userDataSnapshot = userData.val();
+		const usersList = [];
+
+		for (let [key, value] of Object.entries(userDataSnapshot)) {
+			usersList.push(value);
+		}
+
+		const response: unknown[] | undefined = usersList.filter((user) => user.id !== uid);
+
+		if (response) {
+			return response as USER[];
+		} else {
+			return null;
+		}
+	} catch (error: unknown) {
+		if (isError(error)) {
 			return error.code;
 		}
 		return '';

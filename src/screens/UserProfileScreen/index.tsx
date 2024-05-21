@@ -50,15 +50,12 @@ const UserProfileScreen = () => {
 		setModalVisible(false);
 	};
 
-	useEffect(() => {
-		navigation.navigate('LogInScreen');
-	}, [user]);
-
 	const handleLogOut = async () => {
 		const response = await handleLogoutAPI();
 		if (response && typeof response === 'string') {
 			setError(FIREBASE_ERROR[response]);
 		} else if (response && typeof response !== 'string') {
+			navigation.goBack();
 			dispatch(updateUser(null));
 		}
 	};

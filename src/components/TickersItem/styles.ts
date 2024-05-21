@@ -13,6 +13,7 @@ export const Wrapper = styled.View<WrapperProps>`
 	margin: 5px 0;
 	padding: 5px 13px 5px 20px;
 	height: ${({ tickersItemHeight }) => (tickersItemHeight ? tickersItemHeight : '54')}px;
+	z-index: 10000;
 `;
 
 export const TickerInfo = styled.View`

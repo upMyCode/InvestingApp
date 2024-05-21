@@ -4,6 +4,6 @@ export const getNameAndSurnameFirstChar = (userName: string): string => {
 	if (name && surname) {
 		return `${name[0]}${surname[0]}`;
 	} else {
-		return name;
+		return name[0];
 	}
 };

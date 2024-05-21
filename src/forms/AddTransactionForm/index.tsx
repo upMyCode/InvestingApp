@@ -36,7 +36,7 @@ import type { Stocks } from '@constants/stocks/types';
 
 import type { FormValues, AddTransactionFormProps, ApplyTransactionInfo } from './types';
 
-const AddTransactionForm = ({ stocks }: AddTransactionFormProps) => {
+const AddTransactionForm = ({ stocks, handleCloseModal }: AddTransactionFormProps) => {
 	const [registrationError, setRegistrationError] = useState<string>('');
 	const [transactionError, setTransactionError] = useState<string>('');
 	const [transactionType, setTransactionType] = useState<string>('Buy');
@@ -133,6 +133,7 @@ const AddTransactionForm = ({ stocks }: AddTransactionFormProps) => {
 							} else if (response && typeof response !== 'string') {
 								setLoading(false);
 								setConfirmationTransactionStatus(false);
+								handleCloseModal();
 							}
 						}
 					}
@@ -149,7 +150,6 @@ const AddTransactionForm = ({ stocks }: AddTransactionFormProps) => {
 						} else {
 							const response = await handleAddUserTransactionAPI(user?.id, applyTransactionInfo);
 							if (response && typeof response === 'string') {
-								console.log(1);
 							} else if (response && typeof response !== 'string') {
 								const response = await handleUpdateUserDataInAPI(user?.id, user.balance + applyTransactionInfo.result);
 								if (response && typeof response === 'string') {
@@ -166,12 +166,12 @@ const AddTransactionForm = ({ stocks }: AddTransactionFormProps) => {
 									if (currentStock) {
 										const response = await handleUpdateUserStocksDataInAPI(user?.id, currentStock, 'Sell');
 
-										console.log(response);
 										if (response && typeof response === 'string') {
 											setRegistrationError(FIREBASE_ERROR[response]);
 										} else if (response && typeof response !== 'string') {
 											setLoading(false);
 											setConfirmationTransactionStatus(false);
+											handleCloseModal();
 										}
 									}
 								}

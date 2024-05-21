@@ -49,6 +49,7 @@ export default function LogInForm() {
 		console.log(response);
 
 		if (response && typeof response === 'string') {
+			console.log(FIREBASE_ERROR[response]);
 			setRegistrationError(FIREBASE_ERROR[response]);
 		} else if (response && typeof response !== 'string') {
 			const USER = {

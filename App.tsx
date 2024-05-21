@@ -5,6 +5,7 @@ import SplashScreen from 'react-native-splash-screen';
 import StackScreen from '@screens/StackScreen';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+import { NativeBaseProvider } from 'native-base';
 
 function App(): React.JSX.Element {
 	SplashScreen.hide();
@@ -23,9 +24,11 @@ function App(): React.JSX.Element {
 
 	return (
 		<Provider store={store}>
-			<PersistGate loading={null} persistor={persistor}>
-				<StackScreen />
-			</PersistGate>
+			<NativeBaseProvider>
+				<PersistGate loading={null} persistor={persistor}>
+					<StackScreen />
+				</PersistGate>
+			</NativeBaseProvider>
 		</Provider>
 	);
 }

@@ -23,4 +23,5 @@ export interface ApplyTransactionInfo {
 
 export interface AddTransactionFormProps {
 	stocks: Stocks[] | null;
+	handleCloseModal: () => void;
 }
