@@ -1,4 +1,4 @@
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, Dimensions } from 'react-native';
 import React from 'react';
 import TickersItem from '@components/TickersItem';
 import Button from '@components/Button';
@@ -21,6 +21,7 @@ const TickersList = ({
 	tickersListSearchButtonPosition,
 	isModal,
 }: TickersListProps) => {
+	const screenWidth = Dimensions.get('screen').width * 0.9;
 	const sortedByTickerType =
 		searchCategories.searchType !== 'All' ? renderData?.filter((ticker) => ticker.type === searchCategories.searchType) : renderData;
 	const sortedTickers =
@@ -34,7 +35,7 @@ const TickersList = ({
 		if (isChooseableItems && handleSelectItem) {
 			return (
 				<Button
-					width='100%'
+					width={screenWidth}
 					height={54}
 					mt={5}
 					bColor='none'

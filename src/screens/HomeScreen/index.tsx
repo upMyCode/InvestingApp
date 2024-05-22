@@ -1,4 +1,4 @@
-import { FlatList, Dimensions } from 'react-native';
+import { FlatList, Dimensions, StatusBar } from 'react-native';
 import { useEffect, useState } from 'react';
 import { handleUploadStocks, handleGetAllStocks } from '@api/stocks/stocksHelpers';
 import AsyncStorage from '@react-native-async-storage/async-storage';

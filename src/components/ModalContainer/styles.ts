@@ -34,8 +34,9 @@ export const HeaderText = styled.Text<HeaderTextProps>`
 		return fSize;
 	}}px;
 	line-height: ${({ fLineHeight }) => {
-		return fLineHeight ? `${fLineHeight}px` : '0px';
+		return fLineHeight ? `${fLineHeight}px` : '20px';
 	}};
+	z-index: 10000;
 `;
 
 export const ContentMain = styled.View`

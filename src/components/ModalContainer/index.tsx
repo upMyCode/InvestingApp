@@ -1,7 +1,7 @@
 import { CrossLogoIMG } from '@helpers/imagesResolve';
 import Button from '@components/Button';
 import React from 'react';
-import { Image, Modal } from 'react-native';
+import { Image, Modal, Text } from 'react-native';
 
 import { Content, ContentHeader, ContentMain, HeaderButtonContainer, HeaderText, Wrapper } from './styles';
 import { ModalProps } from './types';
