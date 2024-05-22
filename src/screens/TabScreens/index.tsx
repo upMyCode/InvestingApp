@@ -11,6 +11,7 @@ import HomeScreen from '@screens/HomeScreen';
 import PortfolioScreen from '@screens/PortfolioScreen';
 import UserProfileScreen from '@screens/UserProfileScreen';
 import inlineStyle from './styles';
+import ChatScreen from '@screens/ChatScreen';
 import { TabScreensParamList } from './types';
 
 export default function TabScreens() {
@@ -100,7 +101,7 @@ export default function TabScreens() {
 				}}
 				key='ChatScreen'
 				name='ChatScreen'
-				component={() => <View></View>}
+				component={ChatScreen}
 			/>
 			<Tab.Screen
 				options={({ route }) => {

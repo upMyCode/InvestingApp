@@ -1,4 +1,4 @@
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, Dimensions } from 'react-native';
 import React from 'react';
 import TickersItem from '@components/TickersItem';
 import Button from '@components/Button';
@@ -21,6 +21,7 @@ const TickersList = ({
 	tickersListSearchButtonPosition,
 	isModal,
 }: TickersListProps) => {
+	const screenWidth = Dimensions.get('screen').width * 0.9;
 	const sortedByTickerType =
 		searchCategories.searchType !== 'All' ? renderData?.filter((ticker) => ticker.type === searchCategories.searchType) : renderData;
 	const sortedTickers =
@@ -30,28 +31,33 @@ const TickersList = ({
 
 	const renderTickerItem = ({ item }: ListRenderItemInfo<Stocks>) => {
 		const isSelected = item.symbol === selectedItem?.symbol;
-		return isChooseableItems && handleSelectItem ? (
-			<Button
-				width='100%'
-				height={54}
-				mt={5}
-				bColor='none'
-				bgColor={isSelected ? '#735b2d' : 'transparent'}
-				onPress={() => handleSelectItem(item)}
-				bRadius={10}
-			>
-				<TickersItem
-					industry={item.industry}
-					symbol={item.symbol}
-					image={item.image}
-					price={item.price}
-					isSelected={isSelected}
-					tickersItemHeight={tickersItemHeight}
-					value={item.value}
-					changes={item.changes}
-				/>
-			</Button>
-		) : (
+
+		if (isChooseableItems && handleSelectItem) {
+			return (
+				<Button
+					width={screenWidth}
+					height={54}
+					mt={5}
+					bColor='none'
+					bgColor={isSelected ? '#735b2d' : 'transparent'}
+					onPress={() => handleSelectItem(item)}
+					bRadius={10}
+				>
+					<TickersItem
+						industry={item.industry}
+						symbol={item.symbol}
+						image={item.image}
+						price={item.price}
+						isSelected={isSelected}
+						tickersItemHeight={tickersItemHeight}
+						value={item.value}
+						changes={item.changes}
+					/>
+				</Button>
+			);
+		}
+
+		return (
 			<TickersItem
 				industry={item.industry}
 				symbol={item.symbol}
@@ -74,7 +80,7 @@ const TickersList = ({
 				/>
 			</TickersHeader>
 			<Content maxHeightForList={maxHeightForList}>
-				{renderData && (
+				{sortedTickers && (
 					<FlatList keyExtractor={({ isin }) => (isin ? isin : '1')} data={sortedTickers} renderItem={renderTickerItem} />
 				)}
 				{!renderData && <RenderNullListText>Stocks list now is empty</RenderNullListText>}

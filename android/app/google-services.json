@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "193230555908",
+    "firebase_url": "https://investingapp-55c90-default-rtdb.firebaseio.com",
+    "project_id": "investingapp-55c90",
+    "storage_bucket": "investingapp-55c90.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:193230555908:android:ea9a495505c5bdc5dade51",
+        "android_client_info": {
+          "package_name": "com.investingapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoXPBWN_KUkr6C4xpbHXyHpS_I2NEJdVg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

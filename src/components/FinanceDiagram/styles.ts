@@ -30,15 +30,6 @@ export const SearchDateButtonText = styled.Text`
 	color: #ebc67e;
 `;
 
-export const SearchDateButtonWrapper = styled.View`
-	width: 32px;
-	height: 17px;
-	shadow-color: '#171717',
-    shadow-Offset: {width: -2, height: 4},
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-`;
-
 export const styles = StyleSheet.create({
 	shadowProp: {
 		width: 33,

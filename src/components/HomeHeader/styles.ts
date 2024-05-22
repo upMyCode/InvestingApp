@@ -1,7 +1,9 @@
 import styled from 'styled-components/native';
+import { Platform } from 'react-native';
 
 export const Wrapper = styled.SafeAreaView`
 	width: 100%;
+	margin-top: ${Platform.OS === 'ios' ? '0' : '50'}px;
 `;
 
 export const Text = styled.Text`

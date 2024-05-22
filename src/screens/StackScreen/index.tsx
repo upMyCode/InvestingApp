@@ -7,6 +7,9 @@ import LogInScreen from '../LogInScreen';
 import TabScreens from '../TabScreens';
 import { useAppSelector } from '@store/hooks';
 import { useEffect } from 'react';
+import { View, Text, StyleSheet, Image, StatusBar, Platform, SafeAreaView } from 'react-native';
+
+import { Wrapper } from './styles';
 
 const Stack = createStackNavigator<StackScreenParamList>();
 
@@ -19,18 +22,21 @@ export default function StackScreen() {
 	}, [userData]);
 
 	return (
-		<NavigationContainer>
-			{!isUserExists ? (
-				<Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName='StartScreen'>
-					<Stack.Screen name='StartScreen' component={StartScreen} />
-					<Stack.Screen name='RegistrationScreen' component={RegistrationScreen} />
-					<Stack.Screen name='LogInScreen' component={LogInScreen} />
-				</Stack.Navigator>
-			) : (
-				<Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName='TabScreens'>
-					<Stack.Screen name='TabScreens' component={TabScreens} />
-				</Stack.Navigator>
-			)}
-		</NavigationContainer>
+		<Wrapper>
+			<StatusBar barStyle='light-content' backgroundColor='#000000' translucent={false} />
+			<NavigationContainer>
+				{!isUserExists ? (
+					<Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName='StartScreen'>
+						<Stack.Screen name='StartScreen' component={StartScreen} />
+						<Stack.Screen name='RegistrationScreen' component={RegistrationScreen} />
+						<Stack.Screen name='LogInScreen' component={LogInScreen} />
+					</Stack.Navigator>
+				) : (
+					<Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName='TabScreens'>
+						<Stack.Screen name='TabScreens' component={TabScreens} />
+					</Stack.Navigator>
+				)}
+			</NavigationContainer>
+		</Wrapper>
 	);
 }

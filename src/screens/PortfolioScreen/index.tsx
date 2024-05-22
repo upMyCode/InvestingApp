@@ -202,7 +202,7 @@ const PortfolioScreen = () => {
 					fSize={16}
 					modalVisible={isModalVisible}
 				>
-					<AddTransactionForm stocks={stocks} />
+					<AddTransactionForm stocks={stocks} handleCloseModal={handleCloseModal} />
 				</ModalContainer>
 			)}
 		</Wrapper>

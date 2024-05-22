@@ -81,3 +81,62 @@ export const handleAddUserTransactionAPI = async (uid: string, transaction: Appl
 		return '';
 	}
 };
+
+export const getSellAndBuyUserTransactionsAPI = async (uid: string) => {
+	try {
+		const authReference = firebase.app().database('https://investingapp-55c90-default-rtdb.firebaseio.com').ref(`/transactions/${uid}`);
+
+		const transactionsUserDataSnapshot = await authReference.once('value');
+		const transactionsData = transactionsUserDataSnapshot.val();
+
+		if (transactionsData) {
+			const sellStocks = Object.values(transactionsData).filter((stock) => stock.operationType === 'Sell');
+			const buyStocks = Object.values(transactionsData).filter((stock) => stock.operationType === 'Buy');
+			let sellStocksValue = 0;
+			let sellStocksTotal = 0;
+			let buyStocksValue = 0;
+			let buyStocksTotal = 0;
+			let sellStocksData = null;
+			let buyStocksData = null;
+
+			if (sellStocks.length > 0) {
+				sellStocksValue = sellStocks.map((stock) => Number(stock.stocksValue)).reduce((acc, stock) => (acc += stock), 0);
+				sellStocksTotal = Number(
+					sellStocks
+						.map((stock) => Number(stock.result))
+						.reduce((acc, stock) => (acc += stock), 0)
+						.toFixed(2)
+				);
+
+				sellStocksData = {
+					value: sellStocksValue,
+					result: sellStocksTotal,
+				};
+			}
+
+			if (buyStocks.length > 0) {
+				buyStocksValue = buyStocks.map((stock) => Number(stock.stocksValue)).reduce((acc, stock) => (acc += stock), 0);
+				buyStocksTotal = Number(
+					buyStocks
+						.map((stock) => Number(stock.result))
+						.reduce((acc, stock) => (acc += stock), 0)
+						.toFixed(2)
+				);
+
+				buyStocksData = {
+					value: buyStocksValue,
+					result: buyStocksTotal,
+				};
+			}
+
+			return [buyStocksData, sellStocksData];
+		} else {
+			return null;
+		}
+	} catch (error: unknown) {
+		if (isError(error)) {
+			return error.code;
+		}
+		return '';
+	}
+};

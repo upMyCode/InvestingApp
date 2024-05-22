@@ -17,6 +17,7 @@ import ArrowDownLogo from './img/ArrowDownLogo.png';
 import ArrowTopLogo from './img/ArrowTopLogo.png';
 import ChevronDownLogo from './img/ChevronDownLogo.png';
 import ChevronUpLogo from './img/ChevronUpLogo.png';
+import SendLogo from './img/SendLogo.png';
 
 export {
 	StartScreenLogo,
@@ -38,4 +39,5 @@ export {
 	ArrowTopLogo,
 	ChevronDownLogo,
 	ChevronUpLogo,
+	SendLogo,
 };

@@ -455,6 +455,9 @@ PODS:
     - React-Core
   - react-native-safe-area-context (3.3.2):
     - React-Core
+  - react-native-simple-toast (3.3.1):
+    - React-Core
+    - Toast (~> 4)
   - react-native-splash-screen (3.3.0):
     - React-Core
   - React-perflogger (0.71.10)
@@ -622,6 +625,7 @@ PODS:
     - SentryPrivate (= 8.17.1)
   - SentryPrivate (8.17.1)
   - SSZipArchive (2.2.3)
+  - Toast (4.1.1)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -665,6 +669,7 @@ DEPENDENCIES:
   - react-native-mmkv (from `../node_modules/react-native-mmkv`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
+  - react-native-simple-toast (from `../node_modules/react-native-simple-toast`)
   - react-native-splash-screen (from `../node_modules/react-native-splash-screen`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -729,6 +734,7 @@ SPEC REPOS:
     - Sentry
     - SentryPrivate
     - SSZipArchive
+    - Toast
 
 EXTERNAL SOURCES:
   boost:
@@ -789,6 +795,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/netinfo"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
+  react-native-simple-toast:
+    :path: "../node_modules/react-native-simple-toast"
   react-native-splash-screen:
     :path: "../node_modules/react-native-splash-screen"
   React-perflogger:
@@ -904,6 +912,7 @@ SPEC CHECKSUMS:
   react-native-mmkv: 124b22209aacdcd172b6ac39071b9647080f0411
   react-native-netinfo: 48c5f79a84fbc3ba1d28a8b0d04adeda72885fa8
   react-native-safe-area-context: 584dc04881deb49474363f3be89e4ca0e854c057
+  react-native-simple-toast: 1f1cc551d419bc0ab05dcb0136554006c274789d
   react-native-splash-screen: 4312f786b13a81b5169ef346d76d33bc0c6dc457
   React-perflogger: 217095464d5c4bb70df0742fa86bf2a363693468
   React-RCTActionSheet: 8deae9b85a4cbc6a2243618ea62a374880a2c614
@@ -938,6 +947,7 @@ SPEC CHECKSUMS:
   Sentry: d9f99f9cc13777c5d938650c1e1c85047bb4f0d1
   SentryPrivate: 839b1e58addf58624087a80b2628e543193fa8ef
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
+  Toast: 1f5ea13423a1e6674c4abdac5be53587ae481c4e
   Yoga: e7ea9e590e27460d28911403b894722354d73479
 
 PODFILE CHECKSUM: bc0d644e7a1105d4c18de375d90c7de3a24e8435

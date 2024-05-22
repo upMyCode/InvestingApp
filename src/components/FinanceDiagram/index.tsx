@@ -58,6 +58,7 @@ const FinanceDiagram = ({ searchType, modifiedStocks }: FinanceDiagramProps) => 
 			}
 		}
 	};
+
 	const labels = dateButtonType === 'Day' ? dayHours : weekDays;
 
 	const handleSetButtonTypeAsDay = () => {
