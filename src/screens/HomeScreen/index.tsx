@@ -1,9 +1,11 @@
 import { FlatList, Dimensions, StatusBar } from 'react-native';
 import { useEffect, useState } from 'react';
-import { handleUploadStocks, handleGetAllStocks } from '@api/stocks/stocksHelpers';
+import { handleUploadStocks, handleGetAllStocks, getSellAndBuyUserTransactionsAPI } from '@api/stocks/stocksHelpers';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/core';
 import HomeHeader from '@components/HomeHeader';
+import { useAppSelector } from '@store/hooks';
+import FIREBASE_ERROR from '@constants/firebaseErrors';
 import { useGetButtonsForSearchStocksType } from '@hooks/useGetButtonsForSearchStocksType/useGetButtonsForSearchStocksType';
 import {
 	Wrapper,
@@ -30,24 +32,34 @@ interface SearchCategories {
 	searchCategory: string;
 }
 
+interface Transaction {
+	result: number;
+	value: number;
+}
+
+type TransactionItem = Transaction | null;
+type TransactionsInfo = [TransactionItem, TransactionItem];
+
 const HomeScreen = () => {
 	const [stocks, setStocks] = useState<Stocks[] | null>([]);
 	const navigation = useNavigation<StackNavigationProp<TabScreensParamList>>();
+	const user = useAppSelector((store) => store.createUserSlice.user);
 	const [sortCategories, setSortCategories] = useState<SearchCategories>({
 		searchType: 'All',
 		searchCategory: 'All',
 	});
+	const [transactionsListInfo, setTransactionsListInfo] = useState<TransactionsInfo>([null, null]);
 	const [error, setError] = useState<string>('');
 	const monthlyTickersInfo = [
 		{
 			title: 'Buy monthly',
-			moneyInfo: 0,
-			items: 0,
+			moneyInfo: transactionsListInfo[0] ? transactionsListInfo[0].result : 0,
+			items: transactionsListInfo[0] ? transactionsListInfo[0].value : 0,
 		},
 		{
 			title: 'Sold monthly',
-			moneyInfo: 0,
-			items: 0,
+			moneyInfo: transactionsListInfo[1] ? transactionsListInfo[1].result : 0,
+			items: transactionsListInfo[1] ? transactionsListInfo[1].value : 0,
 		},
 	];
 	const screenWidth = Dimensions.get('screen').width;
@@ -155,6 +167,20 @@ const HomeScreen = () => {
 
 	// 	handleUploadStockToTheDB();
 	// }, []);
+
+	//Run this if you want upload stocks to the DB
+	useEffect(() => {
+		const handleGetDataFromTheDB = async () => {
+			const response = await getSellAndBuyUserTransactionsAPI(user?.id);
+			if (response && typeof response === 'string') {
+				setError(FIREBASE_ERROR[response]);
+			} else if (response && typeof response !== 'string') {
+				setTransactionsListInfo(response);
+			}
+		};
+
+		handleGetDataFromTheDB();
+	}, []);
 
 	const handleNavigateToAnalytics = () => {
 		navigation.navigate('AnalyticsStackScreen');

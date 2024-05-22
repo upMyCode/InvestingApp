@@ -26,8 +26,8 @@ export const MonthlyTickersInfoItemWrapper = styled.View`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	width: 133px;
-	height: 112px;
+	width: 140px;
+	height: 120px;
 	background-color: #363534;
 	border-radius: 10px;
 `;
