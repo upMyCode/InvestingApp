@@ -1,7 +1,7 @@
 import { Image } from 'react-native';
 import { StartScreenLogoIMG } from '@helpers/imagesResolve';
 import { startScreenDimensions } from '@constants/dimensions';
-import { Wrapper, Description, ButtonText, MainWrapper, styles, ButtonWrapper } from './styles';
+import { Wrapper, Description, ButtonText, MainWrapper, styles, ButtonWrapper, ImageView } from './styles';
 import React from 'react';
 import textStrings from '@constants/textStrings/textStrings';
 import Button from '@components/Button';
@@ -18,7 +18,7 @@ export default function StartScreen() {
 	return (
 		<MainWrapper>
 			<Wrapper>
-				<Image
+				<ImageView
 					source={{ uri: StartScreenLogoIMG }}
 					width={startScreenDimensions.logoWidth}
 					height={startScreenDimensions.logoHeight}
