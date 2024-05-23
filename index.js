@@ -7,7 +7,7 @@ import App from './App';
 import { nameAndroid, nameIOS } from './app.json';
 import { Platform } from 'react-native';
 
-if (Platform.os === 'android') {
+if (Platform.OS === 'android') {
 	AppRegistry.registerComponent(nameAndroid, () => App);
 } else {
 	AppRegistry.registerComponent(nameIOS, () => App);
