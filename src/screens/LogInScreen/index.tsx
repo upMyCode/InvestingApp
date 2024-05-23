@@ -1,6 +1,6 @@
 import { Image } from 'react-native';
 import React from 'react';
-import { MainWrapper, Wrapper, Description, ImageWrapper } from './styles';
+import { MainWrapper, Wrapper, Description, ImageWrapper, ImageView } from './styles';
 import { RegistrationScreenLogoIMG } from '@helpers/imagesResolve';
 import { registrationScreenDimensions } from '@constants/dimensions';
 import LogInForm from '@forms/LogInForm';
@@ -11,7 +11,7 @@ const RegistrationScreen = () => {
 			<Wrapper>
 				<Description>Авторизация</Description>
 				<ImageWrapper>
-					<Image
+					<ImageView
 						source={{ uri: RegistrationScreenLogoIMG }}
 						width={registrationScreenDimensions.logoWidth}
 						height={registrationScreenDimensions.logoHeight}

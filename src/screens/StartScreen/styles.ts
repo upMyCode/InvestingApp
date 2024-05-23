@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
 import colorPalette from '@theme/colors';
 import { StyleSheet } from 'react-native';
+import { Platform } from 'react-native';
 
 export const styles = StyleSheet.create({
 	alignPosition: {
@@ -11,6 +12,10 @@ export const styles = StyleSheet.create({
 export const MainWrapper = styled.SafeAreaView`
 	flex: 1;
 	background-color: ${colorPalette.white};
+`;
+
+export const ImageView = styled.Image`
+	margin-top: ${Platform.OS === 'ios' ? '0' : '50'}px;
 `;
 
 export const Wrapper = styled.ScrollView`
