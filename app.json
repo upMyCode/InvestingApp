@@ -1,4 +1,5 @@
 {
-	"name": "investingapp",
-	"displayName": "investingapp"
+	"nameAndroid": "investingapp",
+	"displayName": "investingapp",
+	"nameIOS": "investingApp"
 }
